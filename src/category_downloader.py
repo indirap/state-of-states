@@ -14,6 +14,7 @@ import os
 import urllib2
 from datetime import date
 from bs4 import BeautifulSoup
+from wikitimetravel import wiki_history_by_month
 
 url_stem = 'https://en.wikipedia.org'
 
@@ -72,12 +73,12 @@ def download_category(url, output_location):
     page_data = get_subcategories_and_pages(url)
     subcategories = page_data[0]
     pages = page_data[1]
-    print subcategories
     for subcat in subcategories:
         download_category(subcat, output_location)
-    print pages
     for page in pages:
-        download_page(page, create_file_name(page, date.today().isoformat(), output_location))
+        print page
+        for vdate, vurl in wiki_history_by_month(get_page_name(page),date(2000,12,1)):
+            download_page(vurl, create_file_name(page, vdate.isoformat(), output_location))
 
 
 def create_file_name(url, date_string, output_location):
@@ -106,5 +107,5 @@ if __name__ == "__main__":
             if not os.path.exists(new_output_location):
                 os.makedirs(new_output_location)
 
-            download_category(url,"", new_output_location)
+            download_category(url, new_output_location)
     print "Done"
