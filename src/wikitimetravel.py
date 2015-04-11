@@ -57,7 +57,7 @@ def edit_pages(title):
         for edit in obtain_edits(soup):
             yield edit
         if len(soup.find_all("a",class_="mw-nextlink")) == 0:
-            print url
+            #print url
             return
         else:
             url = 'https://en.wikipedia.org' + soup.find_all("a", class_="mw-nextlink")[0]['href']

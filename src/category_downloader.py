@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 from wikitimetravel import wiki_history_by_month
 
 url_stem = 'https://en.wikipedia.org'
+visited_categories = set()
 
 def download_page(url,output_filename):
     '''
@@ -27,6 +28,11 @@ def download_page(url,output_filename):
     out_file = open(output_filename, 'w+')
     out_file.write(html)
     out_file.close()
+
+def check_category(country, url, depth):
+    if country in get_category_name(url) or depth < 4:
+        return True
+    return False
 
 
 def obtain_subcategory_urls(soup):
@@ -53,7 +59,6 @@ def get_subcategories_and_pages(url):
         list of page urls
     '''
     assert('Category' in url)
-    print url
     #Start Up
     page = urllib2.urlopen(url)
     soup = BeautifulSoup(page.read())
@@ -66,17 +71,22 @@ def get_subcategories_and_pages(url):
 
 
 
-def download_category(url, output_location):
+def download_category(country, url, output_location, depth):
     '''
     Recursively downloads pages in categories and subcategories
     '''
+    #Reasons for stopping
+    if url in visited_categories or not check_category(country, url, depth):
+        return
+
+    visited_categories.add(url)
     page_data = get_subcategories_and_pages(url)
+    for i in xrange(depth): sys.stdout.write(".")
+    print url
     subcategories = page_data[0]
     pages = page_data[1]
-    for subcat in subcategories:
-        download_category(subcat, output_location)
+    for subcat in subcategories: download_category(country, subcat, output_location, depth+1)
     for page in pages:
-        print page
         for vdate, vurl in wiki_history_by_month(get_page_name(page),date(2000,12,1)):
             download_page(vurl, create_file_name(page, vdate.isoformat(), output_location))
 
@@ -84,7 +94,6 @@ def download_category(url, output_location):
 def create_file_name(url, date_string, output_location):
     '''
     pagename-YYYY-MM-DD.html
-    TODO: Future, add edit number/merge with dates
     '''
     return output_location + "/" + "-".join([get_page_name(url), date_string]) + ".html"
 
@@ -100,6 +109,7 @@ if __name__ == "__main__":
     output_location = sys.argv[2]
     with open(category_urls) as f:
         for url in f:
+            visited_categories = set()
             print get_category_name(url)
 
             #Create dir for each country
@@ -107,5 +117,5 @@ if __name__ == "__main__":
             if not os.path.exists(new_output_location):
                 os.makedirs(new_output_location)
 
-            download_category(url, new_output_location)
+            download_category(get_category_name(url), url, new_output_location, 0)
     print "Done"
