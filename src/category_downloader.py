@@ -30,7 +30,8 @@ def download_page(url,output_filename):
     out_file.close()
 
 def check_category(country, url, depth):
-    if country in get_category_name(url) or depth < 4:
+    #if country in get_category_name(url) or depth < 4:
+    if depth < 3:
         return True
     return False
 
@@ -81,6 +82,7 @@ def download_category(country, url, output_location, depth):
 
     visited_categories.add(url)
     page_data = get_subcategories_and_pages(url)
+    # Feedback
     for i in xrange(depth): sys.stdout.write(".")
     print url
     subcategories = page_data[0]
