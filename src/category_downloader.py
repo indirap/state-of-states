@@ -19,11 +19,23 @@ from wikitimetravel import wiki_history_by_month
 url_stem = 'https://en.wikipedia.org'
 visited_categories = set()
 
+done_file = open("category_downloader.log", 'w+');
+
 def download_page(url,output_filename):
     '''
     Downloads a page to a given location
     '''
-    response = urllib2.urlopen(url)
+    i=0
+    while True:
+        try:
+            response = urllib2.urlopen(url)
+            break;
+        except:
+            if i >=3:
+                done_file.write("SKIPPING DOWNLOAD: " + url + "\n")
+                return
+            i+=1;
+            print "Page urlopen error, trying again: " + url
     html = response.read()
     out_file = open(output_filename, 'w+')
     out_file.write(html)
@@ -31,7 +43,7 @@ def download_page(url,output_filename):
 
 def check_category(country, url, depth):
     #if country in get_category_name(url) or depth < 4:
-    if depth < 3:
+    if depth < 2:
         return True
     return False
 
@@ -89,6 +101,7 @@ def download_category(country, url, output_location, depth):
     pages = page_data[1]
     for subcat in subcategories: download_category(country, subcat, output_location, depth+1)
     for page in pages:
+        done_file.write(page + "\n") #Record where we are
         for vdate, vurl in wiki_history_by_month(get_page_name(page),date(2000,12,1)):
             download_page(vurl, create_file_name(page, vdate.isoformat(), output_location))
 
@@ -97,7 +110,7 @@ def create_file_name(url, date_string, output_location):
     '''
     pagename-YYYY-MM-DD.html
     '''
-    return output_location + "/" + "-".join([get_page_name(url), date_string]) + ".html"
+    return output_location + "/" + "-".join([get_page_name(url).replace("/",""), date_string]) + ".html"
 
 
 def get_category_name(url):
