@@ -5,6 +5,8 @@ import urllib2
 from datetime import date
 from bs4 import BeautifulSoup
 
+done_file = open("category_downloader_timetravel.log", 'w+');
+
 def make_edit_list_url(title,limit,offset):
     '''
     Gets the URL of the list of past edits (view history)
@@ -60,6 +62,21 @@ def check_date(candidate_date, prev_date):
     prevyear = (candidate_date.year < prev_date.year)
     return sameyear or prevyear
 
+def get_soup(url):
+    i=0
+    while True:
+        try:
+            page = urllib2.urlopen(url)
+            soup = BeautifulSoup(page.read())
+            page.close()
+            return soup
+        except:
+            if i >=3:
+                done_file.write("SKIPPING DOWNLOAD: " + url + "\n")
+                return None
+            i+=1;
+            print "Page urlopen error, trying again: " + url
+
 def edit_pages(title):
     '''
     A generator of edit page (date, urls)
@@ -68,9 +85,12 @@ def edit_pages(title):
     offset = ""
     url = make_edit_list_url(title, limit, offset)
     while True:
-        page = urllib2.urlopen(url) #Only occurs once we've looked through the list
-        soup = BeautifulSoup(page.read())
-        page.close()
+        soup = get_soup(url)
+        if soup == None:
+            return
+        #page = urllib2.urlopen(url) #Only occurs once we've looked through the list
+        #soup = BeautifulSoup(page.read())
+        #page.close()
         for edit in obtain_edits(soup): #Gets a list and iterates through
             yield edit
         if len(soup.find_all("a",class_="mw-nextlink")) == 0:
