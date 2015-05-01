@@ -26,7 +26,7 @@ for country in country_data:
 		if len(filenames) != 0:
 			country_f = open('data/' + country + '_data.csv', 'wt')
 			csv_writer = csv.writer(country_f)
-			csv_writer.writerow(('filename', 'year', 'month', 'num_citations', 'file_size'))
+			csv_writer.writerow(('filename', 'year', 'month', 'num_citations', 'file_size', 'forward_links'))
 
 		# print path to all filenames.
 		for filename in filenames:
@@ -53,4 +53,11 @@ for country in country_data:
 
 			print("num_citations: " + str(num_citations))
 
-			csv_writer.writerow((title, year, month, num_citations, os.path.getsize(os.path.join(dirname, filename))))
+
+                        #Forward links
+                        num_forward_links = 0
+                        with open(os.path.join(dirname, filename)) as f:
+                            soup = BeautifulSoup(f)
+                            #num_wiki_links= len([a in soup.find_all('a') if a.href.startswith("/wiki/")])
+
+			csv_writer.writerow((title, year, month, num_citations, os.path.getsize(os.path.join(dirname, filename)), num_forward_links))
