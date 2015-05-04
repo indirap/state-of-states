@@ -1,4 +1,6 @@
 venv
 data/downloaded_pages
+data/country_data
 *.pyc
 category_downloader.log
+logs/*
