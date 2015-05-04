@@ -13,10 +13,14 @@ Right now it only takes into account the file sizes of the pages.
 
 import os
 import csv
+import re
+from bs4 import BeautifulSoup
 
 country_data = open('data/countries.txt', 'r')
 for country in country_data:
-	dirpath = "./data/testing-countries/" + country.strip() + "/"
+        print "Starting %s" % country.strip()
+	dirpath = "./data/downloaded_pages/" + country.strip() + "/"
+        dirpath = dirpath.replace(" ", "_")
 
 	country_size = 0
 	country_pages = 0
@@ -24,7 +28,7 @@ for country in country_data:
 	for dirname, dirnames, filenames in os.walk(dirpath):
 
 		if len(filenames) != 0:
-			country_f = open('data/' + country + '_data.csv', 'wt')
+			country_f = open('data/country_data/' + country.strip() + '_data.csv', 'wt')
 			csv_writer = csv.writer(country_f)
 			csv_writer.writerow(('filename', 'year', 'month', 'num_citations', 'file_size', 'forward_links'))
 
@@ -39,9 +43,9 @@ for country in country_data:
 				title += array[num] + " "
 			title = title.strip()
 			title = title.replace('_', ' ')
-			print(title + " - " + str(year) + "-" + str(month))
+			#print(title + " - " + str(year) + "-" + str(month))
 
-			print(os.path.join(dirname, filename) + " " + str(os.path.getsize(os.path.join(dirname, filename))))
+			#print(os.path.join(dirname, filename) + " " + str(os.path.getsize(os.path.join(dirname, filename))))
 			country_size += os.path.getsize(os.path.join(dirname, filename))
 			country_pages += 1
 
@@ -51,13 +55,17 @@ for country in country_data:
 					if "reference-text" in line:
 						num_citations += 1
 
-			print("num_citations: " + str(num_citations))
-
 
                         #Forward links
+                        forward_links = []
                         num_forward_links = 0
                         with open(os.path.join(dirname, filename)) as f:
                             soup = BeautifulSoup(f)
-                            #num_wiki_links= len([a in soup.find_all('a') if a.href.startswith("/wiki/")])
+                            wiki_links = soup.find_all('a', href=re.compile("^/wiki/"))
+                            for link in wiki_links:
+                                if not 'Portal:' in link['href']:
+                                    forward_links.append(link)
+                        num_forward_links = len(forward_links)
 
+                        print title + " " + str(num_citations) + " " + str(num_forward_links)
 			csv_writer.writerow((title, year, month, num_citations, os.path.getsize(os.path.join(dirname, filename)), num_forward_links))
