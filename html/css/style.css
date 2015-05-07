@@ -1,0 +1,76 @@
+@font-face {
+	font-family: 'Avenir';
+	src: url("../fonts/Avenir.ttc"); /*URL to font*/
+}
+
+body {
+	background: #fcfcfa;
+	font-family: 'Avenir';
+}
+
+.stroke {
+	fill: none;
+	stroke: #000;
+	stroke-width: 3px;
+}
+
+.fill {
+	fill: #fff;
+}
+
+.graticule {
+	fill: none;
+	stroke: #777;
+	stroke-width: .5px;
+	stroke-opacity: .5;
+}
+
+.land {
+	fill: #222;
+}
+
+.boundary {
+	fill: none;
+	stroke: #fff;
+	stroke-width: .5px;
+}
+
+#tooltip {
+	position: absolute;
+	height: auto;
+	padding: 7px;
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 2px;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+	line-height: 1;
+}
+
+#tooltip.hidden {
+	display: none;
+}
+
+#tooltip p {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 9pt;
+	fill: #aaa;
+}
+
+h1 {
+	font-family: 'Avenir';
+	font-weight: 700;
+}
+
+.title {
+	margin: 10%;
+}
+
+.normal {
+	margin: 7%;
+}

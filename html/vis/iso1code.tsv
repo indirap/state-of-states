@@ -1,0 +1,202 @@
+id	name	country	edits
+4	AFG	Afghanistan	12561
+8	ALB	Albania	11084
+10 	ATA 	Antarctica
+12	DZA	Algeria	10849
+20	AND	Andorra	3176
+24	AGO	Angola	7222
+28	ATG	Antigua and Barbuda	2938
+32	ARG	Argentina	7668
+51	ARM	Armenia	14201
+36	AUS	Australia	13282
+40	AUT	Austria	15045
+31	AZE	Azerbaijan	11571
+48	BHR	Bahrain	6118
+50	BGD	Bangladesh	20090
+52	BRB	Barbados	4764
+112	BLR	Belarus	7538
+56	BEL	Belgium	13198
+84	BLZ	Belize	4068
+204	BEN	Benin	4361
+64	BTN	Bhutan	4202
+68	BOL	Bolivia	6750
+70	BIH	Bosnia and Herzegovina	13542
+72	BWA	Botswana	3346
+76	BRA	Brazil	15310
+96	BRN	Brunei	3791
+100	BGR	Bulgaria	12208
+854	BFA	Burkina Faso	4134
+104	MMR	Burma	10410
+108	BDI	Burundi	3342
+116	KHM	Cambodia	8003
+120	CMR	Cameroon	8190
+124	CAN	Canada	13989
+132	CPV	Cape Verde	3397
+140	CAF	Central African Republic	3434
+148	TCD	Chad	6569
+152	CHL	Chile	12066
+156	CHN	China	18111
+170	COL	Colombia	9488
+174	COM	Comoros	2415
+184	COK	Cook Islands	2319
+188	CRI	Costa Rica	4170
+191	HRV	Croatia	10591
+192	CUB	Cuba	9070
+196	CYP	Cyprus	7487
+203	CZE	Czech Republic	6249
+180	COD	Democratic Republic of the Congo	7458
+208	DNK	Denmark	14604
+262	DJI	Djibouti	2856
+212	DMA	Dominica	2608
+214	DOM	Dominican Republic	5345
+626	TLS	East Timor	3788
+218	ECU	Ecuador	6189
+818	EGY	Egypt	9275
+222	SLV	El Salvador	4535
+226	GNQ	Equatorial Guinea	2759
+232	ERI	Eritrea	4307
+233	EST	Estonia	10638
+231	ETH	Ethiopia	9852
+583	FSM	Federated States of Micronesia	2459
+242	FJI	Fiji	5212
+246	FIN	Finland	13466
+250	FRA	France	13555
+266	GAB	Gabon	3543
+268	GEO	Georgia (country)	11737
+276	DEU	Germany	5551
+288	GHA	Ghana	13864
+300	GRC	Greece	12812
+308	GRD	Grenada	2675
+320	GTM	Guatemala	5353
+324	GIN	Guinea	3373
+624	GNB	Guinea-Bissau	2732
+328	GUY	Guyana	5332
+332	HTI	Haiti	10053
+340	HND	Honduras	4173
+348	HUN	Hungary	8833
+352	ISL	Iceland	9839
+356	IND	India	23635
+360	IDN	Indonesia	8541
+364	IRN	Iran	18536
+368	IRQ	Iraq	14349
+376	ISR	Israel	23414
+380	ITA	Italy	10411
+384	CIV	Ivory Coast	4187
+388	JAM	Jamaica	5657
+392	JPN	Japan	22629
+400	JOR	Jordan	7615
+398	KAZ	Kazakhstan	8504
+404	KEN	Kenya	9404
+528	NLD	Kingdom of the Netherlands	1798
+296	KIR	Kiribati	3021
+414	KWT	Kuwait	7063
+417	KGZ	Kyrgyzstan	6805
+418	LAO	Laos	4978
+428	LVA	Latvia	9198
+422	LBN	Lebanon	14701
+426	LSO	Lesotho	2337
+430	LBR	Liberia	4052
+434	LBY	Libya	7044
+438	LIE	Liechtenstein	2398
+440	LTU	Lithuania	3929
+442	LUX	Luxembourg	5904
+450	MDG	Madagascar	6404
+454	MWI	Malawi	3706
+458	MYS	Malaysia	11799
+462	MDV	Maldives	3733
+466	MLI	Mali	5208
+470	MLT	Malta	7229
+584	MHL	Marshall Islands	2336
+478	MRT	Mauritania	4288
+480	MUS	Mauritius	4159
+484	MEX	Mexico	12588
+498	MDA	Moldova	3643
+492	MCO	Monaco	4186
+496	MNG	Mongolia	10344
+499	MNE	Montenegro	8007
+504	MAR	Morocco	12368
+508	MOZ	Mozambique	4653
+516	NAM	Namibia	8297
+520	NRU	Nauru	4448
+524	NPL	Nepal	17845
+554	NZL	New Zealand	10628
+558	NIC	Nicaragua	6252
+562	NER	Niger	4338
+566	NGA	Nigeria	15961
+570	NIU	Niue	1963
+408	PRK	North Korea	7367
+578	NOR	Norway	10882
+512	OMN	Oman	4172
+586	PAK	Pakistan	22052
+585	PLW	Palau	4287
+591	PAN	Panama	5603
+598	PNG	Papua New Guinea	6155
+600	PRY	Paraguay	3511
+604	PER	Peru	9649
+608	PHL	Philippines	15819
+616	POL	Poland	16912
+620	PRT	Portugal	6527
+634	QAT	Qatar	3595
+372	IRL	Republic of Ireland	10409
+807	MKD	Republic of Macedonia	6143
+178	COG	Republic of the Congo	3058
+642	ROU	Romania	9161
+643	RUS	Russia	20461
+646	RWA	Rwanda	3608
+678	STP	Sao Tome and Principe	2553
+732	ESH	Sahrawi Arab Democratic Republic	1307
+659	KNA	Saint Kitts and Nevis	3225
+662	LCA	Saint Lucia	2529
+670	VCT	Saint Vincent and the Grenadines	2824
+882	WSM	Samoa	3563
+674	SMR	San Marino	2764
+682	SAU	Saudi Arabia	12231
+686	SEN	Senegal	6715
+688	SRB	Serbia	9442
+690	SYC	Seychelles	2135
+694	SLE	Sierra Leone	5096
+702	SGP	Singapore	12755
+703	SVK	Slovakia	6581
+705	SVN	Slovenia	4799
+90	SLB	Solomon Islands	3620
+706	SOM	Somalia	12297
+710	ZAF	South Africa	19113
+410	KOR	South Korea	8062
+728	SSD	South Sudan	2636
+724	ESP	Spain	16681
+144	LKA	Sri Lanka	13266
+729	SDN	Sudan	7974
+740	SUR	Suriname	3499
+748	SWZ	Swaziland	2238
+752	SWE	Sweden	17823
+756	CHE	Switzerland	11872
+760	SYR	Syria	10343
+158	TWN	Taiwan	14676
+762	TJK	Tajikistan	5429
+834	TZA	Tanzania	6196
+764	THA	Thailand	12541
+44	BHS	The Bahamas	2928
+270	GMB	The Gambia	3543
+768	TGO	Togo	2725
+776	TON	Tonga	3156
+780	TTO	Trinidad and Tobago	6361
+788	TUN	Tunisia	6373
+792	TUR	Turkey	14454
+795	TKM	Turkmenistan	4406
+798	TUV	Tuvalu	2861
+800	UGA	Uganda	5021
+804	UKR	Ukraine	18831
+784	ARE	United Arab Emirates	5918
+826	GBR	United Kingdom	36671
+840	USA	United States	26782
+630	PRI 	Puerto Rico	26782
+858	URY	Uruguay	4669
+860	UZB	Uzbekistan	6714
+548	VUT	Vanuatu	3116
+336	VAT	Vatican City	4427
+862	VEN	Venezuela	8848
+704	VNM	Vietnam	13875
+887	YEM	Yemen	8442
+894	ZMB	Zambia	5032
+716	ZWE	Zimbabwe	8025
+304	GRL	Greenland

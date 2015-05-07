@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+	<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+	<div id="worldmap" style="position: relative; width: 80%; margin: 0% 10%"></div>
+ 
+		 
+	<script>
+	var map = new Datamap({
+		scope: 'world',
+		element: document.getElementById('worldmap'),
+		projection: 'mercator',
+		height: 500,
+		fills: {
+			defaultFill: '#bcbcbc',
+			a: '#69D2E7',
+			b: 'A7DBD8',
+			c: 'E0E4CC',
+			d: 'F38630',
+			e: 'FA6900',
+			lt50: 'rgba(0,244,244,0.9)',
+			gt50: 'red'
+		},
+		
+		data: {
+			USA: {fillKey: 'lt50' },
+			RUS: {fillKey: 'lt50' },
+			CAN: {fillKey: 'lt50' },
+			BRA: {fillKey: 'gt50' },
+			INA: {fillKey: 'lt50'},
+			ARG: {fillKey: 'gt50'},
+			COL: {fillKey: 'gt50' },
+			AUS: {fillKey: 'gt50' },
+			ZAF: {fillKey: 'gt50' },
+			MAD: {fillKey: 'gt50' }       
+		}
+	})
+
+	// var basic_choropleth = new Datamap({
+	// 	element: document.getElementById("basic_choropleth"),
+	// 	projection: 'mercator',
+	// 	fills: {
+	// 		defaultFill: "#ABDDA4",
+	// 		authorHasTraveledTo: "#fa0fa0"
+	// 	},
+	// 	data: {
+	// 		USA: { fillKey: "authorHasTraveledTo" },
+	// 		JPN: { fillKey: "authorHasTraveledTo" },
+	// 		ITA: { fillKey: "authorHasTraveledTo" },
+	// 		CRI: { fillKey: "authorHasTraveledTo" },
+	// 		KOR: { fillKey: "authorHasTraveledTo" },
+	// 		DEU: { fillKey: "authorHasTraveledTo" },
+	// 	}
+	// });
+
+	// var colors = d3.scale.category10();
+
+	// window.setInterval(function() {
+	// 	basic_choropleth.updateChoropleth({
+	// 		USA: colors(Math.random() * 10),
+	// 		RUS: colors(Math.random() * 100),
+	// 		AUS: { fillKey: 'authorHasTraveledTo' },
+	// 		BRA: colors(Math.random() * 50),
+	// 		CAN: colors(Math.random() * 50),
+	// 		ZAF: colors(Math.random() * 50),
+	// 		IND: colors(Math.random() * 50),
+	// 	});
+	// }, 2000);
+	</script>
+</body>
