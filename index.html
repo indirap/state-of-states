@@ -1,1 +1,267 @@
-Hello world
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="html/css/style.css">
+
+<body>
+	<div class="title">
+		<h1 class="text-center">state-of-states</h1>
+
+		<p class="lead text-center">finding correlations between <strong>Wikipedia</strong> data and a country’s <strong>economic success</strong></p>
+
+		<p class="text-center">many of us turn to Wikipedia everyday for knowledge about the world, yet what influences the content which is available?</br>by <strong>Harrison Pincket</strong> and <strong>Indira Pranabudi</strong></p>
+	</div>
+
+	<div class="normal">
+		<p>we hypothesize that the amount of <strong>attention</strong> a country receives on <strong>Wikipedia</strong> is positively correlated to that country’s <strong>economic success</strong>. In this way our knowledge of different areas of the world is indirectly influenced by the global economy.</p>
+
+		<p>A country’s attention on Wikipedia can be defined in many ways. In this project, it is defined as a combination of:</p>
+
+		<ul>
+			<li>Number of pageviews.</li>
+			<li>Number of edits.</li>
+			<li>Number of backlinks.</li>
+			<li>Length of page.</li>
+			<li>Number of citations.</li>
+		</ul>
+
+		<p>Meanwhile, a country’s economic success is defined by its GDP per capita.</p>
+	</div>
+
+	<div class="normal">
+		<h1>Data</h1>
+
+		<p>To execute this project we plan on using two sources of data:</p>
+
+		<ul>
+			<li>Wikipedia pages from the country’s internal wikipedia portal. For example, here is the portal page from Brazil. We plan on scraping a list of pages that have already been associated with a particular country, so that we are certain of their relevancy. Scraping past revisions of these pages will provide us with data to compare to past GDP values.</li>
+			<li>World Bank statistics, which contains GDP data along with other data such as life expectancy, poverty rate and school enrollment rate. World Bank provides these information in several different formats, including CSV format.</li>
+		</ul>
+
+		<p>We don’t foresee any difficulties relating to the volume of data as each page is primary text and each country has a limited number of pages associated with it. The country demographics from the World Bank have already been collected and cleaned.</p>
+	</div>
+
+	<div class="normal">
+		<h1>Methodology</h1>
+
+		<p>The Wikipedia data must be scraped from the pages provided by the associated country portal. The historic pages must also be recorded. These will be accessed through Wikipedia’s edit information. The country demographics must be collected from the appropriate source.</p>
+
+		<p>The current plan is to store the Wikipedia articles in plain text and extract the desired features locally. After extraction, the data will be stored in CSV files. The data will be visualized with the aid of D3.js and is projected to consist mainly of simple graphs and charts. As the project progresses we will consider alternative visualizations as we see fit.</p>
+
+		<p>We plan on using data from multiple countries from all around the world, in order to have a large variety of data to work with. We will then apply machine learning on the data in order to find correlations between Wikipedia attention and a country’s economic success. The goal for this project is to use data from 25 different countries.</p>
+
+		<table class="table table-hover">
+			<tr>
+				<td>Task</td>
+				<td>Hours</td>
+				<td>Deadline</td>
+			</tr>
+			<tr>
+				<td>Determine pages to scrape</td>
+				<td>2</td>
+				<td>April 5th</td>
+			</tr>
+			<tr>
+				<td>Identify a process to scrape past revisions</td>
+				<td>4</td>
+				<td>April 9th</td>
+			</tr>
+			<tr>
+				<td>Scrape the pages</td>
+				<td>3</td>
+				<td>April 12th</td>
+			</tr>
+			<tr>
+				<td>Extract features from scraped pages and convert to CSV</td>
+				<td>4</td>
+				<td>April 18th</td>
+			</tr>
+			<tr>
+				<td>Apply machine learning to extracted features and demographics. Tweak. Repeat.</td>
+				<td>14</td>
+				<td>April 30th</td>
+			</tr>
+			<tr>
+				<td>Visualize (depending on findings)</td>
+				<td>3-6</td>
+				<td>May 2nd</td>
+			</tr>
+			<tr>
+				<td>Write-up</td>
+				<td>4</td>
+				<td>May 5th</td>
+			</tr>
+			<tr>
+				<td>Design and Print Poster</td>
+				<td>3</td>
+				<td>Design and Print Poster</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="normal">
+		<h1>Deliverables</h1>
+
+		<ul>
+			<li>75%: Poor analysis of data using machine learning of only an insufficient number of countries. Boring, standard visualizations</li>
+			<li>100%: Great analysis of the data as outlined above, using 25 different countries and a decent set of visualizations.</li>
+			<li>125%: Study of 100 countries. Further analysis including modeling based on geographic regions. Elaborate visualizations, perhaps including advanced map projections to demonstrate regional differences in the influence on Wikipedia.</li>
+		</ul>
+	</div>
+
+	<div class="normal">
+		<h1>Backup Plan</h1>
+
+		<p>In case we fail to discover a correlation between Wikipedia attention and the economic success of a country, we will report the negative results, and attempt to find a correlation with a different demographic listed on the World Bank database.</p>
+	</div>
+
+	<div>
+		<div id="map">
+			<div id="tooltip" class="hidden">
+				<p><strong><span id="value">100</span></strong></p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- <div class="container-fluid">
+		<div class="row title">
+			<div class="col-md-1">hello1</div>
+			<div class="col-md-10">
+			<h1 class="text-center">state-of-states</h1>
+
+			<p class="lead text-center">Many of us turn to Wikipedia everyday for knowledge about the world, yet what influences the content which is available?</p>
+
+			<div class="col-md-1">hello2</div>
+		</div>
+
+		<div class="row">
+			<p>hello3</p>
+		</div>
+
+		<div class="row">
+			<div id="map">
+				<div id="tooltip" class="hidden">
+					<p><strong><span id="value">100</span></strong></p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	</div> -->
+
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+	<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+	<script src="http://d3js.org/queue.v1.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script>
+
+	var width = 960,
+		height = 580;
+
+	var colors = ["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", "#0B486B", "#093A56"];
+	var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
+
+	var color = d3.scale.threshold()
+		.domain(intervals)
+		.range(colors);
+
+	var projection = d3.geo.kavrayskiy7()
+			.scale(170)
+			.translate([width / 2, height / 2])
+			.precision(.1);
+
+	var path = d3.geo.path()
+			.projection(projection);
+
+	var graticule = d3.geo.graticule();
+
+	var svg = d3.select("#map").append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+	svg.append("defs").append("path")
+			.datum({type: "mercator"})
+			.attr("id", "sphere")
+			.attr("d", path);
+
+	svg.append("use")
+			.attr("class", "stroke")
+			.attr("xlink:href", "#sphere");
+
+	svg.append("use")
+			.attr("class", "fill")
+			.attr("xlink:href", "#sphere");
+
+	queue()
+		.defer(d3.json, "html/vis/world-50m.json")
+		.defer(d3.tsv, "html/vis/iso1code.tsv")
+		.await(ready);
+
+	function ready(error, world, countrycodes) {
+		var rateById = {};
+		var getName = {};
+
+		countrycodes.forEach(function(d) {
+			rateById[d.id] = d.edits;
+			getName[d.id] = d.country;
+		});
+
+		for (i = 0; i < 900; i+=4) {
+			console.log()
+		}
+
+		var countries = topojson.feature(world, world.objects.countries).features,
+			neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+		console.log("hello");
+
+		svg.selectAll(".country")
+				.data(countries)
+			.enter().insert("path", ".graticule")
+				.attr("class", "country")
+				.attr("d", path)
+				.style("fill", function(d) { return color(rateById[d.id]); })
+				.on('mouseover', function(d, i) {
+					d3.select(this).style("fill", "#bcbcbc");
+
+					//Get this bar's x/y values, then augment for the tooltip
+					var xPosition = d3.event.pageX;
+					var yPosition = d3.event.pageY;
+
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+					  .style("left", (xPosition - 60) + "px")
+					  .style("top", (yPosition - 30) + "px")
+					  .select("#value")
+					  .text(function() {
+						if (getName[d.id] == "") {
+							return "N/A";
+						}
+						if (rateById[d.id] == "") {
+							return getName[d.id] + " - data N/A";
+						}
+						return getName[d.id] + " - " + rateById[d.id];
+					  });
+
+					d3.select("#tooltip").classed("hidden", false);
+					})
+				.on('mouseout', function(d) {
+					d3.select(this).style("fill", function(d) { return color(rateById[d.id]); });
+
+					d3.select("#tooltip").classed("hidden", true);
+				});
+
+		svg.insert("path", ".graticule")
+			.datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+			.attr("class", "boundary")
+			.attr("d", path);
+	}
+
+	</script>
+</body>
+</html>
