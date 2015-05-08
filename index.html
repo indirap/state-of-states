@@ -95,7 +95,7 @@
 			<tr>
 				<td>Design and Print Poster</td>
 				<td>3</td>
-				<td>Design and Print Poster</td>
+				<td>May 7th</td>
 			</tr>
 		</table>
 	</div>
@@ -111,45 +111,38 @@
 	</div>
 
 	<div class="normal">
+		<h1>Findings</h1>
+
+		<p>The countries with the most number of page edits are:</p>
+
+		<ul>
+			<li>United Kingdom - 36671</li>
+			<li>United States - 26782</li>
+			<li>India - 23635</li>
+			<li>Israel - 23414</li>
+			<li>Japan - 22629</li>
+			<li>Pakistan - 22052</li>
+			<li>Russia - 20461</li>
+			<li>Bangladesh - 20090</li>
+			<li>South Africa - 19113</li>
+			<li>Ukraine - 18831</li>
+		</ul>
+		
+	</div>
+
+	<div class="normal">
 		<h1>Backup Plan</h1>
 
 		<p>In case we fail to discover a correlation between Wikipedia attention and the economic success of a country, we will report the negative results, and attempt to find a correlation with a different demographic listed on the World Bank database.</p>
 	</div>
 
-	<div>
+	<div class="normal">
 		<div id="map">
 			<div id="tooltip" class="hidden">
 				<p><strong><span id="value">100</span></strong></p>
 			</div>
 		</div>
 	</div>
-
-
-	<!-- <div class="container-fluid">
-		<div class="row title">
-			<div class="col-md-1">hello1</div>
-			<div class="col-md-10">
-			<h1 class="text-center">state-of-states</h1>
-
-			<p class="lead text-center">Many of us turn to Wikipedia everyday for knowledge about the world, yet what influences the content which is available?</p>
-
-			<div class="col-md-1">hello2</div>
-		</div>
-
-		<div class="row">
-			<p>hello3</p>
-		</div>
-
-		<div class="row">
-			<div id="map">
-				<div id="tooltip" class="hidden">
-					<p><strong><span id="value">100</span></strong></p>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	</div> -->
 
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
@@ -164,7 +157,12 @@
 		height = 580;
 
 	var colors = ["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", "#0B486B", "#093A56"];
-	var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
+	var intervals = [0.00018011, 0.0003363, 0.0005137, 0.0008364, 0.001467, 0.003209, 0.012256];
+	// var intervals = [255009, 969725, 2057170, 4445249, 8395512, 19092981, 56532728]; // gdp per edits
+	// var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
+
+	// var colors = ["red", "blue"]
+	// var intervals = [10000000]
 
 	var color = d3.scale.threshold()
 		.domain(intervals)
@@ -199,7 +197,7 @@
 
 	queue()
 		.defer(d3.json, "html/vis/world-50m.json")
-		.defer(d3.tsv, "html/vis/iso1code.tsv")
+		.defer(d3.tsv, "html/vis/data.tsv")
 		.await(ready);
 
 	function ready(error, world, countrycodes) {
@@ -207,7 +205,7 @@
 		var getName = {};
 
 		countrycodes.forEach(function(d) {
-			rateById[d.id] = d.edits;
+			rateById[d.id] = d.editspopulation;
 			getName[d.id] = d.country;
 		});
 
@@ -245,7 +243,7 @@
 						if (rateById[d.id] == "") {
 							return getName[d.id] + " - data N/A";
 						}
-						return getName[d.id] + " - " + rateById[d.id];
+						return getName[d.id] + " - " + rateById[d.id] + " edits";
 					  });
 
 					d3.select("#tooltip").classed("hidden", false);
