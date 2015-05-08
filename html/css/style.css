@@ -62,7 +62,7 @@ body {
 	fill: #aaa;
 }
 
-h1 {
+h1,h2,h3 {
 	font-family: 'Avenir';
 	font-weight: 700;
 }
@@ -73,4 +73,8 @@ h1 {
 
 .normal {
 	margin: 7%;
+}
+
+img {
+	max-width: 100%;
 }
