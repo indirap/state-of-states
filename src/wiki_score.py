@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
 	time_array = [[0 for num in range(12)] for num in range(2001,2016)]
 	num_array = [[0 for num in range(12)] for num in range(2001,2016)]
-4
+
 	country_data = open('data/country_data/Greece_data.csv', 'rt')
 	csv_reader = csv.reader(country_data)
 	next(csv_reader, None)
