@@ -4,3 +4,4 @@ data/country_data
 *.pyc
 category_downloader.log
 logs/*
+data/wb_data/*

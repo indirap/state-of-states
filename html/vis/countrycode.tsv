@@ -1,0 +1,200 @@
+code	country	edits
+AFG	Afghanistan	12561
+ALB	Albania	11084
+DZA	Algeria	10849
+AND	Andorra	3176
+AGO	Angola	7222
+ATG	Antigua and Barbuda	2938
+ARG	Argentina	7668
+ARM	Armenia	14201
+AUS	Australia	13282
+AUT	Austria	15045
+AZE	Azerbaijan	11571
+BHR	Bahrain	6118
+BGD	Bangladesh	20090
+BRB	Barbados	4764
+BLR	Belarus	7538
+BEL	Belgium	13198
+BLZ	Belize	4068
+BEN	Benin	4361
+BTN	Bhutan	4202
+BOL	Bolivia	6750
+BIH	Bosnia and Herzegovina	13542
+BWA	Botswana	3346
+BRA	Brazil	15310
+BRN	Brunei	3791
+BGR	Bulgaria	12208
+BFA	Burkina Faso	4134
+MMR	Burma	10410
+BDI	Burundi	3342
+KHM	Cambodia	8003
+CMR	Cameroon	8190
+CAN	Canada	13989
+CPV	Cape Verde	3397
+CAF	Central African Republic	3434
+TCD	Chad	6569
+CHL	Chile	12066
+CHN	China	18111
+COL	Colombia	9488
+COM	Comoros	2415
+COK	Cook Islands	2319
+CRI	Costa Rica	4170
+HRV	Croatia	10591
+CUB	Cuba	9070
+CYP	Cyprus	7487
+CZE	Czech Republic	6249
+COD	Democratic Republic of the Congo	7458
+DNK	Denmark	14604
+DJI	Djibouti	2856
+DMA	Dominica	2608
+DOM	Dominican Republic	5345
+TLS	East Timor	3788
+ECU	Ecuador	6189
+EGY	Egypt	9275
+SLV	El Salvador	4535
+GNQ	Equatorial Guinea	2759
+ERI	Eritrea	4307
+EST	Estonia	10638
+ETH	Ethiopia	9852
+FSM	Federated States of Micronesia	2459
+FJI	Fiji	5212
+FIN	Finland	13466
+FRA	France	13555
+GAB	Gabon	3543
+GEO	Georgia (country)	11737
+DEU	Germany	5551
+GHA	Ghana	13864
+GRC	Greece	12812
+GRD	Grenada	2675
+GTM	Guatemala	5353
+GIN	Guinea	3373
+GNB	Guinea-Bissau	2732
+GUY	Guyana	5332
+HTI	Haiti	10053
+HND	Honduras	4173
+HUN	Hungary	8833
+ISL	Iceland	9839
+IND	India	23635
+IDN	Indonesia	8541
+IRN	Iran	18536
+IRQ	Iraq	14349
+ISR	Israel	23414
+ITA	Italy	10411
+CIV	Ivory Coast	4187
+JAM	Jamaica	5657
+JPN	Japan	22629
+JOR	Jordan	7615
+KAZ	Kazakhstan	8504
+KEN	Kenya	9404
+NLD	Kingdom of the Netherlands	1798
+KIR	Kiribati	3021
+SCG	Kosovo	6204
+KWT	Kuwait	7063
+KGZ	Kyrgyzstan	6805
+LAO	Laos	4978
+LVA	Latvia	9198
+LBN	Lebanon	14701
+LSO	Lesotho	2337
+LBR	Liberia	4052
+LBY	Libya	7044
+LIE	Liechtenstein	2398
+LTU	Lithuania	3929
+LUX	Luxembourg	5904
+MDG	Madagascar	6404
+MWI	Malawi	3706
+MYS	Malaysia	11799
+MDV	Maldives	3733
+MLI	Mali	5208
+MLT	Malta	7229
+MHL	Marshall Islands	2336
+MRT	Mauritania	4288
+MUS	Mauritius	4159
+MEX	Mexico	12588
+MDA	Moldova	3643
+MCO	Monaco	4186
+MNG	Mongolia	10344
+MNE	Montenegro	8007
+MAR	Morocco	12368
+MOZ	Mozambique	4653
+NAM	Namibia	8297
+NRU	Nauru	4448
+NPL	Nepal	17845
+NZL	New Zealand	10628
+NIC	Nicaragua	6252
+NER	Niger	4338
+NGA	Nigeria	15961
+NIU	Niue	1963
+PRK	North Korea	7367
+NOR	Norway	10882
+OMN	Oman	4172
+PAK	Pakistan	22052
+PLW	Palau	4287
+PAN	Panama	5603
+PNG	Papua New Guinea	6155
+PRY	Paraguay	3511
+PER	Peru	9649
+PHL	Philippines	15819
+POL	Poland	16912
+PRT	Portugal	6527
+QAT	Qatar	3595
+IRL	Republic of Ireland	10409
+MKD	Republic of Macedonia	6143
+COG	Republic of the Congo	3058
+ROU	Romania	9161
+RUS	Russia	20461
+RWA	Rwanda	3608
+STP	Sao Tome and Principe	2553
+ESH	Sahrawi Arab Democratic Republic	1307
+KNA	Saint Kitts and Nevis	3225
+LCA	Saint Lucia	2529
+VCT	Saint Vincent and the Grenadines	2824
+WSM	Samoa	3563
+SMR	San Marino	2764
+SAU	Saudi Arabia	12231
+SEN	Senegal	6715
+SRB	Serbia	9442
+SYC	Seychelles	2135
+SLE	Sierra Leone	5096
+SGP	Singapore	12755
+SVK	Slovakia	6581
+SVN	Slovenia	4799
+SLB	Solomon Islands	3620
+SOM	Somalia	12297
+ZAF	South Africa	19113
+KOR	South Korea	8062
+SSD	South Sudan	2636
+ESP	Spain	16681
+LKA	Sri Lanka	13266
+SDN	Sudan	7974
+SUR	Suriname	3499
+SWZ	Swaziland	2238
+SWE	Sweden	17823
+CHE	Switzerland	11872
+SYR	Syria	10343
+TWN	Taiwan	14676
+TJK	Tajikistan	5429
+TZA	Tanzania	6196
+THA	Thailand	12541
+BHS	The Bahamas	2928
+GMB	The Gambia	3543
+TGO	Togo	2725
+TON	Tonga	3156
+TTO	Trinidad and Tobago	6361
+TUN	Tunisia	6373
+TUR	Turkey	14454
+TKM	Turkmenistan	4406
+TUV	Tuvalu	2861
+UGA	Uganda	5021
+UKR	Ukraine	18831
+ARE	United Arab Emirates	5918
+GBR	United Kingdom	36671
+USA	United States	26782
+URY	Uruguay	4669
+UZB	Uzbekistan	6714
+VUT	Vanuatu	3116
+VAT	Vatican City	4427
+VEN	Venezuela	8848
+VNM	Vietnam	13875
+YEM	Yemen	8442
+ZMB	Zambia	5032
+ZWE	Zimbabwe	8025

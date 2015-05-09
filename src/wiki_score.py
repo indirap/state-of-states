@@ -30,7 +30,7 @@ if __name__ == "__main__":
 	time_array = [[0 for num in range(12)] for num in range(2001,2016)]
 	num_array = [[0 for num in range(12)] for num in range(2001,2016)]
 
-	country_data = open('data/country_data/Afghanistan_data_edited.csv', 'rt')
+	country_data = open('data/country_data/Greece_data.csv', 'rt')
 	csv_reader = csv.reader(country_data)
 	next(csv_reader, None)
 
@@ -81,20 +81,24 @@ if __name__ == "__main__":
 				 		print(str(year) + "-" + str(month) + " " + str(time_array[year-2001][month]))
 			
 			# Assign the value to page_array
-			print(line[1] + " " + line[2] + " - " + line[4])
-			page_array[int(line[1])-2001][int(line[2])-1] = int(line[4])
+			print(line[1] + " " + line[2] + " - " + line[5])
+			page_array[int(line[1])-2001][int(line[2])-1] = int(line[5])
 
 			# Assign the cur_filename to prev_filename
 			prev_filename = cur_filename
 
 	# Now that we've gone through the whole csv file, get the average file size per month-year pair,
 	# and then write to disk?
-	csv_writer = csv.writer(open('data/country_data/Afghanistan_plot_v2.csv', 'wt'))
-	csv_writer.writerow(('year', 'month', 'filesize'))
+	csv_writer = csv.writer(open('data/country_data/Greece_avg_fwdlinks.csv', 'wt'))
+	csv_writer.writerow(('year', 'month', 'fwd links'))
 
 	print("<><><><><><><><><><><><><><><><><><><><><><><><><><><>")
 	for year in range(2001,2016):
 		for month in range(12):
-			avg = float(time_array[year-2001][month])/float(num_array[year-2001][month])
+			if num_array[year-2001][month] != 0:
+				avg = float(time_array[year-2001][month])/float(num_array[year-2001][month])
+			else:
+				avg = 0.0
+			# avg = time_array[year-2001][month]
 			print(str(year) + " " + str(month) + " - " + str(avg))
 			csv_writer.writerow((year, month, avg))

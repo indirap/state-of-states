@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link href="html/build/nv.d3.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="html/css/style.css">
+
+<body>
+	<div class="title">
+		<h1 class="text-center">state-of-states</h1>
+
+		<p class="lead text-center">Finding correlations between <strong>Wikipedia</strong> data and a country’s <strong>economic success</strong></p>
+
+		<p class="text-center">Many of us turn to Wikipedia everyday for knowledge about the world, yet what influences the content which is available?</br>by <strong>Harrison Pincket</strong> and <strong>Indira Pranabudi</strong></p>
+	</div>
+
+	<div class="normal">
+		<h1>Introduction</h1>
+		<p>We hypothesize that the amount of <strong>attention</strong> a country receives on <strong>Wikipedia</strong> is positively correlated to that country’s <strong>economic success</strong>. In this way our knowledge of different areas of the world is indirectly influenced by the global economy.</p>
+
+		<p>A country’s attention on Wikipedia can be defined in many ways. In this project, it is defined as a combination of:</p>
+
+		<ul>
+			<li>Number of edits.</li>
+			<li>Number of forward links.</li>
+			<li>Page size.</li>
+			<li>Number of citations.</li>
+		</ul>
+
+		<p>Meanwhile, a country’s economic success is defined by its GDP per capita.</p>
+	</div>
+
+	<div class="normal">
+		<h1>Data</h1>
+
+		<p>We used two primary sources of data:</p>
+
+		<h3>Wikipedia Pages</h3>
+
+		<p>There were several different options we could use to determine whether or not a pge is related to a particular country:</p>
+
+		<ul>
+			<li>Pages with the country name in the title. <a target="_blank" href="http://en.wikipedia.org/w/index.php?search=brazil&title=Special%3ASearch&fulltext=1">Here</a> is the list of pages with the term "Brazil" in its title.</li>
+			<li>Portal pages. <a target="_blank" href="http://en.wikipedia.org/wiki/Portal:Brazil">Here</a> is the portal page for Brazil.</li>
+			<li>Category pages. <a target="_blank" href="http://en.wikipedia.org/wiki/Category:Brazil">Here</a> is the Category page for Brazil.</li>
+			<li>Index pages. <a target="_blank" href="https://www.wikiwand.com/en/Index_of_Brazil-related_articles">Here</a> is the page for "Index of Brazil-related pages".</li>
+			<li>Outline of country pages. <a href="http://en.wikipedia.org/wiki/Outline_of_Brazil">Here</a> is the "Outline of Brazil" page.</li>
+			<li>Related topics listed at the bottom of a country's page.</li>
+		</ul>
+
+		<p>In the end, we decided to use the Category pages at it seemed to be the most up-to-date and standardized list among the others.</p>
+
+		<p>We also scraped past revisions of each page to provide us with data to compare to past GDP values. At the top right section of a Wikipedia page, there is a tab called <a target="_blank" href="http://en.wikipedia.org/w/index.php?title=Brazil&action=history">"View history"</a> which lets us view past revisions. We wrote a Python script to dowload one revision (the latest one) for each month since the page was created. Downloading all of the past revisions would give us too many files.</p>
+
+		<img src="html/img/View history.png">
+
+		<h3>World Bank Data</h3>
+
+		<p><a href="http://data.worldbank.org/">World Bank statistics</a>, which contains GDP data along with other data such as life expectancy, poverty rate and school enrollment rate. World Bank provides these information in several different formats, including CSV format. These demographics from the World Bank have already been collected and cleaned.</p>
+	</div>
+
+	<div class="normal">
+		<h1>Methodology</h1>
+
+		<h3>Collecting Data</h3>
+
+		<p>We scraped the Wikipedia pages using a Python library called <strong><a target="_blank" href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a></strong>. We ran <code><a target="_blank" href="src/extract_states.py">extract_states.py</a></code> to first extract the list of countries on Wikipedia, and then <code><a target="_blank" href="src/category_downloader.py">category_downloader.py</a></code> to extract a list of the associated pages through the Category page.</p>
+
+		<p>We stored the Wikipedia articles in plain text and ran <code><a target="_blank" href="src/wiki_attention.py">wiki_attention.py</a></code>extracted the desired features locally, and store them in CSV files.</p>
+
+		<p>The original goal for this project is to use data from 25 different countries. However, upon writing the Python scripts, we realized that we could download data from all the countries listed on Wikipedia.</p>
+
+		<table class="table table-hover">
+			<tr>
+				<td>Task</td>
+				<td>Hours</td>
+				<td>Deadline</td>
+			</tr>
+			<tr>
+				<td>Determine pages to scrape</td>
+				<td>2</td>
+				<td>April 5th</td>
+			</tr>
+			<tr>
+				<td>Identify a process to scrape past revisions</td>
+				<td>4</td>
+				<td>April 9th</td>
+			</tr>
+			<tr>
+				<td>Scrape the pages</td>
+				<td>3</td>
+				<td>April 12th</td>
+			</tr>
+			<tr>
+				<td>Extract features from scraped pages and convert to CSV</td>
+				<td>4</td>
+				<td>April 18th</td>
+			</tr>
+			<tr>
+				<td>Apply machine learning to extracted features and demographics. Tweak. Repeat.</td>
+				<td>14</td>
+				<td>April 30th</td>
+			</tr>
+			<tr>
+				<td>Visualize (depending on findings)</td>
+				<td>3-6</td>
+				<td>May 2nd</td>
+			</tr>
+			<tr>
+				<td>Write-up</td>
+				<td>4</td>
+				<td>May 5th</td>
+			</tr>
+			<tr>
+				<td>Design and Print Poster</td>
+				<td>3</td>
+				<td>May 7th</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="normal">
+		<h1>Deliverables</h1>
+
+		<ul>
+			<li>75%: Poor analysis of data using machine learning of only an insufficient number of countries. Boring, standard visualizations</li>
+			<li>100%: Great analysis of the data as outlined above, using 25 different countries and a decent set of visualizations.</li>
+			<li>125%: Study of 100 countries. Further analysis including modeling based on geographic regions. Elaborate visualizations, perhaps including advanced map projections to demonstrate regional differences in the influence on Wikipedia.</li>
+		</ul>
+	</div>
+
+	<div class="normal">
+		<h1>Backup Plan</h1>
+
+		<p>In case we fail to discover a correlation between Wikipedia attention and the economic success of a country, we will report the negative results, and attempt to find a correlation with a different demographic listed on the World Bank database.</p>
+	</div>
+
+	<div class="normal">
+		<h1>Findings</h1>
+
+		<p>The countries with the most number of page edits are:</p>
+
+		<ul>
+			<li>United Kingdom - 36671</li>
+			<li>United States - 26782</li>
+			<li>India - 23635</li>
+			<li>Israel - 23414</li>
+			<li>Japan - 22629</li>
+			<li>Pakistan - 22052</li>
+			<li>Russia - 20461</li>
+			<li>Bangladesh - 20090</li>
+			<li>South Africa - 19113</li>
+			<li>Ukraine - 18831</li>
+		</ul>
+	</div>
+
+	<div class="normal">
+		<h2>Map of Edits</h2>
+		<div id="map" max-width="100%">
+			<div id="tooltip" class="hidden">
+				<p><strong><span id="value">100</span></strong></p>
+			</div>
+		</div>
+
+		<div id="legend"></div>
+	</div>
+
+	<div class="normal">
+		<h2>GDP &amp; Edits</h>
+
+		<div id="scatter" class='with-3d-shadow with-transitions'>
+			<svg width="960" height="580"></svg>
+		</div>
+	</div>
+	
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+	<script src="html/build/nv.d3.js"></script>
+
+	<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+	<script src="http://d3js.org/queue.v1.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script>
+
+	var width = 960,
+		height = 580;
+
+	var colors = ["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", "#0B486B", "#093A56"];
+	// var intervals = [0.00018011, 0.0003363, 0.0005137, 0.0008364, 0.001467, 0.003209, 0.012256]; // edits per population
+	// var intervals = [255009, 969725, 2057170, 4445249, 8395512, 19092981, 56532728]; // gdp per edits
+	var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
+
+	// var colors = ["red", "blue"]
+	// var intervals = [10000000]
+
+	var color = d3.scale.threshold()
+		.domain(intervals)
+		.range(colors);
+
+	var projection = d3.geo.kavrayskiy7()
+			.scale(170)
+			.translate([width / 2, height / 2])
+			.precision(.1);
+
+	var path = d3.geo.path()
+			.projection(projection);
+
+	var graticule = d3.geo.graticule();
+
+	var svg = d3.select("#map").append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+	svg.append("defs").append("path")
+			.datum({type: "mercator"})
+			.attr("id", "sphere")
+			.attr("d", path);
+
+	svg.append("use")
+			.attr("class", "stroke")
+			.attr("xlink:href", "#sphere");
+
+	svg.append("use")
+			.attr("class", "fill")
+			.attr("xlink:href", "#sphere");
+
+	var legend = d3.select("#legend").append("svg")
+		.data(["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#3B8686", "#0B486B", "#093A56"])
+		.attr("width", width)
+		.attr("height", 70);
+
+	queue()
+		.defer(d3.json, "html/vis/world-50m.json")
+		.defer(d3.tsv, "html/vis/data.tsv")
+		.await(ready);
+
+	function ready(error, world, countrycodes) {
+		var rateById = {};
+		var getName = {};
+
+		countrycodes.forEach(function(d) {
+			rateById[d.id] = d.edits;
+			getName[d.id] = d.country;
+		});
+
+		var countries = topojson.feature(world, world.objects.countries).features,
+			neighbors = topojson.neighbors(world.objects.countries.geometries);
+
+		console.log("hello");
+
+		svg.selectAll(".country")
+				.data(countries)
+			.enter().insert("path", ".graticule")
+				.attr("class", "country")
+				.attr("d", path)
+				.style("fill", function(d) { return color(rateById[d.id]); })
+				.on('mouseover', function(d, i) {
+					d3.select(this).style("fill", "#bcbcbc");
+
+					//Get this bar's x/y values, then augment for the tooltip
+					var xPosition = d3.event.pageX;
+					var yPosition = d3.event.pageY;
+
+					//Update the tooltip position and value
+					d3.select("#tooltip")
+					  .style("left", (xPosition - 60) + "px")
+					  .style("top", (yPosition - 30) + "px")
+					  .select("#value")
+					  .text(function() {
+						if (getName[d.id] == "") {
+							return "N/A";
+						}
+						if (rateById[d.id] == "") {
+							return getName[d.id] + " - data N/A";
+						}
+						return getName[d.id] + " - " + rateById[d.id] + " edits";
+					  });
+
+					d3.select("#tooltip").classed("hidden", false);
+					})
+				.on('mouseout', function(d) {
+					d3.select(this).style("fill", function(d) { return color(rateById[d.id]); });
+
+					d3.select("#tooltip").classed("hidden", true);
+				});
+
+		svg.insert("path", ".graticule")
+			.datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+			.attr("class", "boundary")
+			.attr("d", path);
+
+		legend.append("rect")
+			.attr("x", 0)
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#ECF9D8");
+
+		legend.append("rect")
+			.attr("x", (800/7))
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#CFF09E");
+
+		legend.append("rect")
+			.attr("x", (800/7*2))
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#A8DBA8");
+
+		legend.append("rect")
+			.attr("x", (800/7*3))
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#79BD9A");
+
+		legend.append("rect")
+			.attr("x", (800/7*4))
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#3B8686");
+
+		legend.append("rect")
+			.attr("x", (800/7*5))
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#0B486B");
+
+		legend.append("rect")
+			.attr("x", (800/7*6))
+			.attr("y", 10)
+			.attr("width", (800/7))
+			.attr("height", 20)
+			.style("fill", "#093A56");
+
+		var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
+
+		legend.append("text")
+			.text("≥ 0.249")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", 10)
+			.attr("y", 40);
+
+		legend.append("text")
+			.text("≥ 0.330")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", (800/7) + 10)
+			.attr("y", 40);
+
+		legend.append("text")
+			.text("≥ 0.411")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", (800/7*2) + 10)
+			.attr("y", 40);
+
+		legend.append("text")
+			.text("≥ 0.492")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", (800/7*3) + 10)
+			.attr("y", 40);
+
+		legend.append("text")
+			.text("≥ 0.573")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", (800/7*4) + 10)
+			.attr("y", 40);
+
+		legend.append("text")
+			.text("≥ 0.0.655")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", (800/7*5) + 10)
+			.attr("y", 40);
+
+		legend.append("text")
+			.text("≥ 0.817")
+			.attr("font-family", "@font-family-base")
+			.attr("font-size", "9px")
+			.attr("x", (800/7*6) + 10)
+			.attr("y", 40);	
+	}
+
+	</script>
+
+	<script>
+	// register our custom symbols to nvd3
+	// make sure your path is valid given any size because size scales if the chart scales.
+	nv.utils.symbolMap.set('thin-x', function(size) {
+		size = Math.sqrt(size);
+		return 'M' + (-size/2) + ',' + (-size/2) +
+				'l' + size + ',' + size +
+				'm0,' + -(size) +
+				'l' + (-size) + ',' + size;
+	});
+
+	// create the chart
+
+	queue()
+		.defer(d3.tsv, "html/vis/data.tsv")
+		.await(ready);
+
+	var chart;
+
+	function ready(error, edits) {
+		nv.addGraph(function() {
+		chart = nv.models.scatterChart()
+			.showDistX(true)
+			.showDistY(true)
+			.useVoronoi(true)
+			.color(d3.scale.category10().range())
+			.duration(300)
+		;
+		chart.dispatch.on('renderEnd', function(){
+			console.log('render complete');
+		});
+
+		chart.xAxis.tickFormat(d3.format('.02f'));
+		chart.yAxis.tickFormat(d3.format('.02f'));
+		chart.tooltipContent(function(key) {
+			return '<h2>' + key + '</h2>';
+		});
+
+		d3.select('#scatter svg')
+			.datum(randomData(4,5, edits))
+			.call(chart);
+
+		// d3.select('#scatter svg')
+		// 	.data(edits)
+		// 	.call(chart);
+
+		nv.utils.windowResize(chart.update);
+
+		chart.dispatch.on('stateChange', function(e) { ('New State:', JSON.stringify(e)); });
+		return chart;
+	});
+	}
+
+
+	function randomData(groups, points, edits) { //# groups,# points per group
+		var rateById = {};
+		var ratebyGdp = {};
+		var getName = {};
+
+		edits.forEach(function(d) {
+			rateById[d.id] = d.edits;
+			ratebyGdp[d.id] = d.gdp;
+			getName[d.id] = d.country;
+		});
+
+		// smiley and thin-x are our custom symbols!
+		var data = [],
+			shapes = ['thin-x', 'circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
+			random = d3.random.normal();
+
+		for (i = 0; i < 20; i++) {
+			data.push({
+				key: 'Group ' + i,
+				values: []
+			});
+
+			// data[i].values.push({
+			// 	x: rateById[i],
+			// 	y: ratebyGdp[i],
+			// 	size: Math.round(Math.random() * 100) / 100,
+			// 	shape: 'circle'
+			// });
+
+			for (j = 0; j < 1; j++) {
+				data[i].values.push({
+					x: i,
+					y: i,
+					size: Math.round(Math.random() * 100) / 100,
+					shape: shapes[j % shapes.length]
+				});
+			}
+		}
+
+		console.log(data);
+
+		return data;
+	}
+
+	</script>
+</body>
+</html>
