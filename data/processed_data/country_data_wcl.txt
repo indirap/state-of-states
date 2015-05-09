@@ -1,0 +1,205 @@
+12561,Afghanistan
+11084,Albania
+10849,Algeria
+3176,Andorra
+7222,Angola
+2938,Antigua and Barbuda
+7668,Argentina
+14201,Armenia
+13282,Australia
+15045,Austria
+11571,Azerbaijan
+6118,Bahrain
+20090,Bangladesh
+4764,Barbados
+7538,Belarus
+13198,Belgium
+4068,Belize
+4361,Benin
+4202,Bhutan
+6750,Bolivia
+13542,Bosnia and Herzegovina
+3346,Botswana
+15310,Brazil
+3791,Brunei
+12208,Bulgaria
+4134,Burkina Faso
+10410,Burma
+3342,Burundi
+8003,Cambodia
+8190,Cameroon
+13989,Canada
+3397,Cape Verde
+3434,Central African Republic
+6569,Chad
+12066,Chile
+18111,China
+9488,Colombia
+2415,Comoros
+2319,Cook Islands
+4170,Costa Rica
+10591,Croatia
+9070,Cuba
+7487,Cyprus
+6249,Czech Republic
+7458,Democratic Republic of the Congo
+14604,Denmark
+2856,Djibouti
+2608,Dominica
+5345,Dominican Republic
+3788,East Timor
+6189,Ecuador
+9275,Egypt
+4535,El Salvador
+2759,Equatorial Guinea
+4307,Eritrea
+10638,Estonia
+9852,Ethiopia
+2459,Federated States of Micronesia
+5212,Fiji
+13466,Finland
+13555,France
+3543,Gabon
+11737,Georgia (country)
+5551,Germany
+13864,Ghana
+12812,Greece
+2675,Grenada
+5353,Guatemala
+2732,Guinea-Bissau
+3373,Guinea
+5332,Guyana
+10053,Haiti
+4173,Honduras
+8833,Hungary
+9839,Iceland
+23635,India
+8541,Indonesia
+18536,Iran
+14349,Iraq
+23414,Israel
+10411,Italy
+4187,Ivory Coast
+5657,Jamaica
+22629,Japan
+7615,Jordan
+8504,Kazakhstan
+9404,Kenya
+1798,Kingdom of the Netherlands
+3021,Kiribati
+6204,Kosovo
+7063,Kuwait
+6805,Kyrgyzstan
+4978,Laos
+9198,Latvia
+14701,Lebanon
+2337,Lesotho
+4052,Liberia
+7044,Libya
+2398,Liechtenstein
+3929,Lithuania
+5904,Luxembourg
+6404,Madagascar
+3706,Malawi
+11799,Malaysia
+3733,Maldives
+5208,Mali
+7229,Malta
+2336,Marshall Islands
+4288,Mauritania
+4159,Mauritius
+12588,Mexico
+3643,Moldova
+4186,Monaco
+10344,Mongolia
+8007,Montenegro
+12368,Morocco
+4653,Mozambique
+946,Nagorno-Karabakh Republic
+8297,Namibia
+4448,Nauru
+17845,Nepal
+10628,New Zealand
+6252,Nicaragua
+4338,Niger
+15961,Nigeria
+1963,Niue
+7367,North Korea
+2138,Northern Cyprus
+10882,Norway
+4172,Oman
+22052,Pakistan
+4287,Palau
+5603,Panama
+6155,Papua New Guinea
+3511,Paraguay
+9649,Peru
+15819,Philippines
+16912,Poland
+6527,Portugal
+3595,Qatar
+10409,Republic of Ireland
+6143,Republic of Macedonia
+3058,Republic of the Congo
+9161,Romania
+20461,Russia
+3608,Rwanda
+2553,S%C3%A3o Tom%C3%A9 and Pr%C3%ADncipe
+1307,Sahrawi Arab Democratic Republic
+3225,Saint Kitts and Nevis
+2529,Saint Lucia
+2824,Saint Vincent and the Grenadines
+3563,Samoa
+2764,San Marino
+12231,Saudi Arabia
+6715,Senegal
+9442,Serbia
+2135,Seychelles
+5096,Sierra Leone
+12755,Singapore
+6581,Slovakia
+4799,Slovenia
+3620,Solomon Islands
+12297,Somalia
+1320,Somaliland
+19113,South Africa
+8062,South Korea
+1666,South Ossetia
+2636,South Sudan
+16681,Spain
+13266,Sri Lanka
+14666,State of Palestine
+7974,Sudan
+3499,Suriname
+2238,Swaziland
+17823,Sweden
+11872,Switzerland
+10343,Syria
+14676,Taiwan
+5429,Tajikistan
+6196,Tanzania
+12541,Thailand
+2928,The Bahamas
+3543,The Gambia
+2725,Togo
+3156,Tonga
+3862,Transnistria
+6361,Trinidad and Tobago
+6373,Tunisia
+14454,Turkey
+4406,Turkmenistan
+2861,Tuvalu
+5021,Uganda
+18831,Ukraine
+5918,United Arab Emirates
+36671,United Kingdom
+26782,United States
+4669,Uruguay
+6714,Uzbekistan
+3116,Vanuatu
+4427,Vatican City
+8848,Venezuela
+13875,Vietnam
+8442,Yemen
+5032,Zambia
+8025,Zimbabwe
