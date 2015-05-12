@@ -6,7 +6,6 @@ import scipy.stats
 # Takes a joined data set and calculates pearson correlation on data
 
 # Load data
-
 gdp_data = []
 citation_data = []
 fsize_data = []

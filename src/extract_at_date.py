@@ -1,22 +1,20 @@
+'''
+extract_at_date.py
+
+Given a csv file containing all of the countries by line,
+selects the hard-coded feature at a given year and month.
+The file name is passed in
+The filtered output is printed to stdin.
+'''
 import os
 import csv
 import sys
 
 y = sys.argv[1]
 m = sys.argv[2]
-#feature = sys.argv[3]
 fd = open(sys.argv[3])
 
 feature_col = 3
-
-'''
-if(feature == "citations"):
-    feature_col = 3
-elif feature == "size":
-    feature_col = 4
-elif feature == "links":
-    feature_col = 5
-'''
 
 
 reader = csv.reader(fd)
