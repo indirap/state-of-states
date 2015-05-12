@@ -1,10 +1,17 @@
+'''
+extract_states.py
+
+Extracts state names from the html file (in the data folder).
+'''
 from bs4 import BeautifulSoup
 import sys
 
-# Usage
-# First argument is the html file (in the data folder)
-# Second argument is the output file for a list of country urls
-# Third argument is the output file for a list of category urls
+'''
+Usage
+ First argument is the html file (in the data folder)
+ Second argument is the output file for a list of country urls
+ Third argument is the output file for a list of category urls
+'''
 
 soup = BeautifulSoup(open(sys.argv[1]))
 name_out = open(sys.argv[2], 'w+')

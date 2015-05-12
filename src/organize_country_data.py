@@ -1,3 +1,6 @@
+'''
+Not used, see wiki_score.py
+'''
 import os
 import csv
 import sys

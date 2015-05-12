@@ -114,9 +114,11 @@ def create_file_name(url, date_string, output_location):
 
 
 def get_category_name(url):
+    ''' Given a url, extracts the category name '''
     return url[35:].strip()
 
 def get_page_name(url):
+    ''' Given a url, extracts the page name '''
     return url[30:].strip()
 
 if __name__ == "__main__":
