@@ -2,7 +2,6 @@
 <html>
 <meta charset="utf-8">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-<link href="html/build/nv.d3.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="html/css/style.css">
 <link href="html/js/c3.css" rel="stylesheet" type="text/css">
 
@@ -146,12 +145,12 @@
 		<p>The first thing we did was to plot the number of citations, forward links and file sizes of a particular country over time, and compare it to the GDP of that country. Although we found that generally, a country with a high GDP also has a high Wikipedia attention, we found that this does not mean a sharp decrease in GDP affect the Wikipedia attention in the same way (i.e. decrease the amount of Wikipedia attention). It is very unlikely that the number of pages related to a country would decrease, or that the length of the article would decrease.</p>
 
 		<p>Looking at the graph of GDP vs. average file size of pages related to the USA shows that there is generally a positive correlation between the two metrics:</p>
-		<div class="chart-usa"></div>
+		<div class="chart usa"></div>
 
 		<p>However, looking at the graph of GDP vs. average file size of pages related to Greece shows that the relationship is not as straightforward as we thought it would be:</p>
-		<div class="chart-greece"></div>
+		<div class="chart greece"></div>
 
-		<p>We then decided to visualize the number of edits per country on a world map:</p>
+		<p>Edits per population:</p>
 
 		<div id="map" max-width="100%">
 			<div id="tooltip" class="hidden">
@@ -233,300 +232,26 @@
 	</div>
 	
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<script src="html/js/c3.min.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
-	<script src="html/build/nv.d3.js"></script>
 
 	<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
 
 	<script src="http://d3js.org/queue.v1.min.js"></script>
+
+	<!-- Tooltip -->
 	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-	<script>
 
-	var width = 960,
-		height = 580;
+	<!-- C3 plugin for charts -->
+	<script src="html/js/c3.min.js"></script>
 
-	var colors = ["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", "#0B486B", "#093A56"];
-	// var intervals = [0.00018011, 0.0003363, 0.0005137, 0.0008364, 0.001467, 0.003209, 0.012256]; // edits per population
-	// var intervals = [255009, 969725, 2057170, 4445249, 8395512, 19092981, 56532728]; // gdp per edits
-	var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
+	<!-- JS for the world map -->
+	<script src="html/vis/worldeditsmap.js"></script>
 
-	// var colors = ["red", "blue"]
-	// var intervals = [10000000]
+	<!-- JS for the Greece chart -->
+	<script src="html/vis/greece_chart.js"></script>
 
-	var color = d3.scale.threshold()
-		.domain(intervals)
-		.range(colors);
+	<!-- JS for the USA chart -->
+	<script src="html/vis/usa_chart.js"></script>
 
-	var projection = d3.geo.kavrayskiy7()
-			.scale(170)
-			.translate([width / 2, height / 2])
-			.precision(.1);
-
-	var path = d3.geo.path()
-			.projection(projection);
-
-	var graticule = d3.geo.graticule();
-
-	var svg = d3.select("#map").append("svg")
-			.attr("width", width)
-			.attr("height", height);
-
-	svg.append("defs").append("path")
-			.datum({type: "mercator"})
-			.attr("id", "sphere")
-			.attr("d", path);
-
-	svg.append("use")
-			.attr("class", "stroke")
-			.attr("xlink:href", "#sphere");
-
-	svg.append("use")
-			.attr("class", "fill")
-			.attr("xlink:href", "#sphere");
-
-	var legend = d3.select("#legend").append("svg")
-		.data(["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#3B8686", "#0B486B", "#093A56"])
-		.attr("width", width)
-		.attr("height", 70);
-
-	queue()
-		.defer(d3.json, "html/vis/world-50m.json")
-		.defer(d3.tsv, "html/vis/data.tsv")
-		.await(ready);
-
-	function ready(error, world, countrycodes) {
-		var rateById = {};
-		var getName = {};
-
-		countrycodes.forEach(function(d) {
-			rateById[d.id] = d.edits;
-			getName[d.id] = d.country;
-		});
-
-		var countries = topojson.feature(world, world.objects.countries).features,
-			neighbors = topojson.neighbors(world.objects.countries.geometries);
-
-		svg.selectAll(".country")
-				.data(countries)
-			.enter().insert("path", ".graticule")
-				.attr("class", "country")
-				.attr("d", path)
-				.style("fill", function(d) { return color(rateById[d.id]); })
-				.on('mouseover', function(d, i) {
-					d3.select(this).style("fill", "#bcbcbc");
-
-					//Get this bar's x/y values, then augment for the tooltip
-					var xPosition = d3.event.pageX;
-					var yPosition = d3.event.pageY;
-
-					//Update the tooltip position and value
-					d3.select("#tooltip")
-					  .style("left", (xPosition - 60) + "px")
-					  .style("top", (yPosition - 30) + "px")
-					  .select("#value")
-					  .text(function() {
-						if (getName[d.id] == "") {
-							return "N/A";
-						}
-						if (rateById[d.id] == "") {
-							return getName[d.id] + " - data N/A";
-						}
-						return getName[d.id] + " - " + rateById[d.id] + " edits";
-					  });
-
-					d3.select("#tooltip").classed("hidden", false);
-					})
-				.on('mouseout', function(d) {
-					d3.select(this).style("fill", function(d) { return color(rateById[d.id]); });
-
-					d3.select("#tooltip").classed("hidden", true);
-				});
-
-		svg.insert("path", ".graticule")
-			.datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-			.attr("class", "boundary")
-			.attr("d", path);
-
-		legend.append("rect")
-			.attr("x", 0)
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#ECF9D8");
-
-		legend.append("rect")
-			.attr("x", (800/7))
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#CFF09E");
-
-		legend.append("rect")
-			.attr("x", (800/7*2))
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#A8DBA8");
-
-		legend.append("rect")
-			.attr("x", (800/7*3))
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#79BD9A");
-
-		legend.append("rect")
-			.attr("x", (800/7*4))
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#3B8686");
-
-		legend.append("rect")
-			.attr("x", (800/7*5))
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#0B486B");
-
-		legend.append("rect")
-			.attr("x", (800/7*6))
-			.attr("y", 10)
-			.attr("width", (800/7))
-			.attr("height", 20)
-			.style("fill", "#093A56");
-
-		var intervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454];
-
-		legend.append("text")
-			.text("≥ 3000 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", 10)
-			.attr("y", 40);
-
-		legend.append("text")
-			.text("≥ 4000 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", (800/7) + 10)
-			.attr("y", 40);
-
-		legend.append("text")
-			.text("≥ 5021 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", (800/7*2) + 10)
-			.attr("y", 40);
-
-		legend.append("text")
-			.text("≥ 6569 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", (800/7*3) + 10)
-			.attr("y", 40);
-
-		legend.append("text")
-			.text("≥ 8541 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", (800/7*4) + 10)
-			.attr("y", 40);
-
-		legend.append("text")
-			.text("≥ 11571 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", (800/7*5) + 10)
-			.attr("y", 40);
-
-		legend.append("text")
-			.text("≥ 14454 edits")
-			.attr("font-family", "@font-family-base")
-			.attr("font-size", "9px")
-			.attr("x", (800/7*6) + 10)
-			.attr("y", 40);	
-	}
-
-	</script>
-
-	<script>
-	var chart = c3.generate({
-		bindto: '.chart-greece',
-		color: {
-		  pattern: ['#CFF09E', '#3B8686']
-		},
-		data: {
-			x: 'x',
-		  columns: [
-			['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
-			['File Size', 44478, 38068, 39665, 41367, 44124, 49240, 56255, 62617, 68816, 74452, 80173, 85495, 89335],
-			['GDP', 212611721758, 219335821022, 233894807367, 245478738870, 247665771278, 262068232726, 271338832139, 270133049794, 258260896384, 244189836218, 222545123738, 207919209322, 201025631249]
-		  ],
-		  axes: {
-			GDP: 'y2' // ADD
-		  }
-		},
-		axis: {
-		  y: {
-			label: { // ADD
-			  text: 'Average File Size',
-			  position: 'outer-middle'
-			}
-		  },
-		  y2: {
-			show: true,
-			label: { // ADD
-			  text: 'GDP (2005 US$)',
-			  position: 'outer-middle'
-			},
-			tick: {
-			  format: d3.format("$,") // ADD
-			}
-		  }
-		}
-		});
-	</script>
-
-	<script>
-	var chart = c3.generate({
-		bindto: '.chart-usa',
-		color: {
-		  pattern: ['#CFF09E', '#3B8686']
-		},
-		data: {
-			x: 'x',
-		  columns: [
-			['x', 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
-			['File Size', 55753, 59632, 60963, 63804, 68797, 79278, 86238, 96551, 103889, 112979, 116718, 123993, 132717],
-			['GDP', 10621800000000, 10977500000000, 11510700000000, 12274900000000, 13093700000000, 13855900000000, 14477600000000, 14718600000000, 14418700000000, 14964400000000, 15517900000000, 16163200000000, 16768100000000]
-		  ],
-		  axes: {
-			GDP: 'y2' // ADD
-		  }
-		},
-		axis: {
-		  y: {
-			label: { // ADD
-			  text: 'Average File Size',
-			  position: 'outer-middle'
-			}
-		  },
-		  y2: {
-			show: true,
-			label: { // ADD
-			  text: 'GDP (2005 US$)',
-			  position: 'outer-middle'
-			},
-			tick: {
-			  format: d3.format("$,") // ADD
-			}
-		  }
-		}
-		});
-	</script>
 </body>
 </html>

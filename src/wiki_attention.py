@@ -2,11 +2,10 @@
 wiki_attention.py
 
 Calculates the amount of attention a particular country has. This takes into account:
--	Number of pageviews. (Not sure how to get the data though)
--	Number of edits. [Maybe read the [country]_data.csv files to get the number of edits?]
--	Number of backlinks. [Not sure how?]
--	Length of page. [DONE]
--	Number of citations. [DONE]
+-	Number of edits.
+-	Number of forward links.
+-	Length of page.
+-	Number of citations.
 
 Right now it only takes into account the file sizes of the pages.
 """
@@ -16,23 +15,27 @@ import csv
 import re
 from bs4 import BeautifulSoup
 
-country_data = open('data/countries.txt', 'r')
+# countries.txt is a txt file containing the names of all countries we
+# downloaded from Wikipedia. 
+country_data = open('data/country_name_data/countries.txt', 'r')
 for country in country_data:
-        print "Starting %s" % country.strip()
+		print "Starting %s" % country.strip()
+
 	dirpath = "./data/downloaded_pages/" + country.strip() + "/"
-        dirpath = dirpath.replace(" ", "_")
+	dirpath = dirpath.replace(" ", "_")
 
 	country_size = 0
 	country_pages = 0
 
+	# Traverse all the Wikipedia pages associated with each path, and write
+	# to a CSV file the filename, year, month, number of citations, file size
+	# as well as forward links from that page.
 	for dirname, dirnames, filenames in os.walk(dirpath):
-
 		if len(filenames) != 0:
 			country_f = open('data/country_data/' + country.strip() + '_data.csv', 'wt')
 			csv_writer = csv.writer(country_f)
 			csv_writer.writerow(('filename', 'year', 'month', 'num_citations', 'file_size', 'forward_links'))
 
-		# print path to all filenames.
 		for filename in filenames:
 			# Need to get the month and the year
 			array = filename.split('-')
@@ -43,29 +46,28 @@ for country in country_data:
 				title += array[num] + " "
 			title = title.strip()
 			title = title.replace('_', ' ')
-			#print(title + " - " + str(year) + "-" + str(month))
 
-			#print(os.path.join(dirname, filename) + " " + str(os.path.getsize(os.path.join(dirname, filename))))
 			country_size += os.path.getsize(os.path.join(dirname, filename))
 			country_pages += 1
 
 			num_citations = 0
+
+			# Count number of citations and forward links. Only count the forward links
+			# if they point to other Wikipedia pages. 
 			with open(os.path.join(dirname, filename)) as f:
 				for line in f:
 					if "reference-text" in line:
 						num_citations += 1
 
+						# Forward links
+						forward_links = []
+						num_forward_links = 0
+						with open(os.path.join(dirname, filename)) as f:
+							soup = BeautifulSoup(f)
+							wiki_links = soup.find_all('a', href=re.compile("^/wiki/"))
+							for link in wiki_links:
+								if not 'Portal:' in link['href']:
+									forward_links.append(link)
+						num_forward_links = len(forward_links)
 
-                        #Forward links
-                        forward_links = []
-                        num_forward_links = 0
-                        with open(os.path.join(dirname, filename)) as f:
-                            soup = BeautifulSoup(f)
-                            wiki_links = soup.find_all('a', href=re.compile("^/wiki/"))
-                            for link in wiki_links:
-                                if not 'Portal:' in link['href']:
-                                    forward_links.append(link)
-                        num_forward_links = len(forward_links)
-
-                        print title + " " + str(num_citations) + " " + str(num_forward_links)
 			csv_writer.writerow((title, year, month, num_citations, os.path.getsize(os.path.join(dirname, filename)), num_forward_links))

@@ -1,5 +1,7 @@
 """
 capitalize.py
+
+A simple Python script to capitalize the country names.
 """
 
 import csv
