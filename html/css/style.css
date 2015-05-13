@@ -1,12 +1,11 @@
+/* ===== FONT ===== */
+
 @font-face {
 	font-family: 'Avenir';
 	src: url("../fonts/Avenir.ttc"); /*URL to font*/
 }
 
-body {
-	background: #fcfcfa;
-	font-family: 'Avenir';
-}
+/* ===== WORLD MAP ===== */
 
 .stroke {
 	fill: none;
@@ -35,6 +34,8 @@ body {
 	stroke-width: .5px;
 }
 
+/* ===== TOOLTIP ===== */
+
 #tooltip {
 	position: absolute;
 	height: auto;
@@ -62,34 +63,68 @@ body {
 	fill: #aaa;
 }
 
+/* ===== GENERAL ===== */
+
+body {
+	background: #fcfcfa;
+	background-color: #00A3FF;
+	font-family: 'Avenir';
+	color: black;
+}
+
+.normal {
+	padding: 4% 7%;
+}
+
 h1,h2,h3 {
 	font-family: 'Avenir';
 	font-weight: 700;
 }
 
-.title {
-	margin: 10%;
-}
-
-.normal {
-	margin: 7%;
-}
-
 img {
 	max-width: 100%;
-	margin: 5%;
+	margin: 5% 0;
 	align: middle;
 }
 
-.half {
-	max-width: 35%;
+/* ===== WRAPPER ===== */
+
+.wrapper {
+	background-color: white;
+	margin: 3%;
 }
 
+/* ===== CHART STUFF ====== */
+
 svg {
-	margin-top: 5%;
-	margin-bottom: 5%;
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 .chart {
 	margin-bottom: 5%;
+	background-color: white;
+}
+
+/* ===== TITLE ===== */
+
+.title {
+	padding: 10%;
+	color: black;
+}
+
+.title h1 {
+	text-shadow: 1px 1px 1px #000;
+	font-size: 5em;
+	text-decoration: underline;
+	/*-moz-text-decoration-color: white;  Code for Firefox */
+    text-decoration-color: white;
+}
+
+.title strong {
+	color: white;
+}
+
+.title medium {
+	font-weight: 600;
 }
