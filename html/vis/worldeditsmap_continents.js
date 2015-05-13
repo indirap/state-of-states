@@ -5,7 +5,7 @@ var width = 800;
 
 // var colors = ["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", "#0B486B", "#093A56"];
 
-var colors = ["#ECF9D8", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", "#093A56"];
+var colors = ["#ECF9D8", "#A8DBA8", "#79BD9A", "#3B8686", "#235070", "#06293C"];
 
 // The intervals were determined so that the countries would be divided evenly into 8
 // intervals, so that it would be aesthetically pleasing (i.e. colors spread evenly). 
@@ -46,11 +46,6 @@ csvg.append("use")
 csvg.append("use")
 		.attr("class", "fill")
 		.attr("xlink:href", "#sphere");
-
-var clegend = d3.select("#c-legend").append("svg")
-	.data(colors)
-	.attr("width", width)
-	.attr("height", 70);
 
 // Load data before proceeding.
 queue()
@@ -128,103 +123,4 @@ function ready(error, world, countrycodes) {
 		.datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
 		.attr("class", "boundary")
 		.attr("d", path);
-
-	// Code for the legend. 
-	clegend.append("rect")
-		.attr("x", 0)
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#ECF9D8");
-
-	clegend.append("rect")
-		.attr("x", (800/7))
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#CFF09E");
-
-	clegend.append("rect")
-		.attr("x", (800/7*2))
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#A8DBA8");
-
-	clegend.append("rect")
-		.attr("x", (800/7*3))
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#79BD9A");
-
-	clegend.append("rect")
-		.attr("x", (800/7*4))
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#3B8686");
-
-	clegend.append("rect")
-		.attr("x", (800/7*5))
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#0B486B");
-
-	clegend.append("rect")
-		.attr("x", (800/7*6))
-		.attr("y", 10)
-		.attr("width", (800/7))
-		.attr("height", 20)
-		.style("fill", "#093A56");
-
-	clegend.append("text")
-		.text("≥ 3000 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", 10)
-		.attr("y", 40);
-
-	clegend.append("text")
-		.text("≥ 4000 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", (800/7) + 10)
-		.attr("y", 40);
-
-	clegend.append("text")
-		.text("≥ 5021 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", (800/7*2) + 10)
-		.attr("y", 40);
-
-	clegend.append("text")
-		.text("≥ 6569 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", (800/7*3) + 10)
-		.attr("y", 40);
-
-	clegend.append("text")
-		.text("≥ 8541 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", (800/7*4) + 10)
-		.attr("y", 40);
-
-	clegend.append("text")
-		.text("≥ 11571 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", (800/7*5) + 10)
-		.attr("y", 40);
-
-	clegend.append("text")
-		.text("≥ 14454 edits")
-		.attr("font-family", "@font-family-base")
-		.attr("font-size", "9px")
-		.attr("x", (800/7*6) + 10)
-		.attr("y", 40);	
 }

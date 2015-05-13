@@ -16,11 +16,13 @@ for c in continents:
 	continent_num[c] = 0
 	continent_pop[c] = 0
 
-input_file = open("html/vis/data.csv", "rt")
+input_file = open("html/vis/new_data.csv", "rt")
 csv_reader = csv.reader(input_file)
 next(csv_reader, None)
 
 for line in csv_reader:
+	if line[11] == "":
+		continue
 	if line[4] != "":
 		continent_sum[line[11]] += float(line[4])
 		continent_num[line[11]] += 1

@@ -7,6 +7,8 @@
 
 <body>
 	<div class="title">
+		<img id="wiki" src="html/img/wikipedia4.png">
+
 		<h1 class="text-center">state-of-states</h1>
 
 		<p class="lead text-center">Finding correlations between <strong>Wikipedia</strong> data and a country’s <strong>economic success</strong></p>
@@ -19,7 +21,7 @@
 			<h1>INTRODUCTION</h1>
 			<p>We hypothesize that the amount of <strong>attention</strong> a country receives on <strong>Wikipedia</strong> is positively correlated to that country’s <strong>economic success</strong>. In this way our knowledge of different areas of the world is indirectly influenced by the global economy.</p>
 
-			<p>A country’s attention on Wikipedia can be defined in many ways. In this project, it is defined as a combination of:</p>
+			<p>A country’s attention on Wikipedia can be measured in many ways. In this project, it is measured as a combination of:</p>
 
 			<ul>
 				<li>Number of edits.</li>
@@ -28,50 +30,7 @@
 				<li>Number of citations.</li>
 			</ul>
 
-			<p>Meanwhile, a country’s economic success is defined by its GDP.</p>
-		</div>
-
-		<div class="normal">
-			<h1>Data</h1>
-
-			<p>We used two primary sources of data:</p>
-
-			<h3>Wikipedia Pages</h3>
-
-			<p>There were several different options we could use to determine whether or not a pge is related to a particular country:</p>
-
-			<ul>
-				<li>Pages with the country name in the title. <a target="_blank" href="http://en.wikipedia.org/w/index.php?search=brazil&title=Special%3ASearch&fulltext=1">Here</a> is the list of pages with the term "Brazil" in its title.</li>
-				<li>Portal pages. <a target="_blank" href="http://en.wikipedia.org/wiki/Portal:Brazil">Here</a> is the portal page for Brazil.</li>
-				<li>Category pages. <a target="_blank" href="http://en.wikipedia.org/wiki/Category:Brazil">Here</a> is the Category page for Brazil.</li>
-				<li>Index pages. <a target="_blank" href="https://www.wikiwand.com/en/Index_of_Brazil-related_articles">Here</a> is the page for "Index of Brazil-related pages".</li>
-				<li>Outline of country pages. <a href="http://en.wikipedia.org/wiki/Outline_of_Brazil">Here</a> is the "Outline of Brazil" page.</li>
-				<li>Related topics listed at the bottom of a country's page.</li>
-			</ul>
-
-			<p>In the end, we decided to use the Category pages at it seemed to be the most up-to-date and standardized list among the others.</p>
-
-			<p>We also scraped past revisions of each page to provide us with data to compare to past GDP values. At the top right section of a Wikipedia page, there is a tab called <a target="_blank" href="http://en.wikipedia.org/w/index.php?title=Brazil&action=history">"View history"</a> which lets us view past revisions. We wrote a Python script to dowload one revision (the latest one) for each month since the page was created. Downloading all of the past revisions would give us too many files.</p>
-
-			<p>In total, we downloaded <strong>1,634,173 pages</strong>, which take up <strong>116GB</strong> and took approximately <strong>1 week</strong> to download.
-
-			<img src="html/img/View history.png">
-
-			<h3>World Bank Data</h3>
-
-			<p><a href="http://data.worldbank.org/">World Bank statistics</a>, which contains GDP data along with other data such as life expectancy, poverty rate and school enrollment rate. World Bank provides these information in several different formats, including CSV format. These demographics from the World Bank have already been collected and cleaned.</p>
-		</div>
-
-		<div class="normal">
-			<h1>Methodology</h1>
-
-			<h3>Collecting Data</h3>
-
-			<p>We scraped the Wikipedia pages using a Python library called <strong><a target="_blank" href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a></strong>. We ran <code><a target="_blank" href="src/extract_states.py">extract_states.py</a></code> to first extract the list of countries on Wikipedia, and then <code><a target="_blank" href="src/category_downloader.py">category_downloader.py</a></code> to extract a list of the associated pages through the Category page.</p>
-
-			<p>We stored the Wikipedia articles in plain text and ran <code><a target="_blank" href="src/wiki_attention.py">wiki_attention.py</a></code>extracted the desired features locally, and store them in CSV files.</p>
-
-			<p>The original goal for this project is to use data from 25 different countries. However, upon writing the Python scripts, we realized that we could download data from all the countries listed on Wikipedia.</p>
+			<p>Meanwhile, we associated a country’s economic success with its GDP.</p>
 
 			<h3>Timeline</h3>
 
@@ -122,168 +81,303 @@
 					<td>May 7th</td>
 				</tr>
 			</table>
+
+			<h3>Deliverables</h3>
+
+			<ul>
+				<li>75%: Poor analysis of data using machine learning of only an insufficient number of countries. Boring, standard visualizations</li>
+				<li>100%: Great analysis of the data as outlined above, using 25 different countries and a decent set of visualizations.</li>
+				<li>125%: Study of 100 countries. Further analysis including modeling based on geographic regions. Elaborate visualizations, perhaps including advanced map projections to demonstrate regional differences in the influence on Wikipedia.</li>
+			</ul>
+
+			<h3>Backup Plan</h3>
+
+			<p>In case we fail to discover a correlation between Wikipedia attention and the economic success of a country, we will report the negative results, and attempt to find a correlation with a different demographic listed on the World Bank database.</p>
 		</div>
 
 		<div class="normal">
-		<h1>Deliverables</h1>
+			<h1>DATA</h1>
 
-		<ul>
-			<li>75%: Poor analysis of data using machine learning of only an insufficient number of countries. Boring, standard visualizations</li>
-			<li>100%: Great analysis of the data as outlined above, using 25 different countries and a decent set of visualizations.</li>
-			<li>125%: Study of 100 countries. Further analysis including modeling based on geographic regions. Elaborate visualizations, perhaps including advanced map projections to demonstrate regional differences in the influence on Wikipedia.</li>
-		</ul>
-	</div>
+			<p>We used two primary sources of data:</p>
 
-	<div class="normal">
-		<h1>Backup Plan</h1>
+			<h3>Wikipedia Data</h3>
 
-		<p>In case we fail to discover a correlation between Wikipedia attention and the economic success of a country, we will report the negative results, and attempt to find a correlation with a different demographic listed on the World Bank database.</p>
-	</div>
+			<p>For each country we collected a set of Wikipedia articles associated with it. Making the association between a page and a country is not straight forward. There were several different options we could use to determine whether or not a page is related to a particular country:</p>
 
-	<div class="normal">
-		<h1>Findings</h1>
+			<ul>
+				<li>Pages with the country name in the title. <a target="_blank" href="http://en.wikipedia.org/w/index.php?search=brazil&title=Special%3ASearch&fulltext=1">Here</a> is the list of pages with the term "Brazil" in its title.</li>
+				<li>Portal pages. <a target="_blank" href="http://en.wikipedia.org/wiki/Portal:Brazil">Here</a> is the portal page for Brazil.</li>
+				<li>Category pages. <a target="_blank" href="http://en.wikipedia.org/wiki/Category:Brazil">Here</a> is the Category page for Brazil.</li>
+				<li>Index pages. <a target="_blank" href="https://www.wikiwand.com/en/Index_of_Brazil-related_articles">Here</a> is the page for "Index of Brazil-related pages".</li>
+				<li>Outline of country pages. <a href="http://en.wikipedia.org/wiki/Outline_of_Brazil">Here</a> is the "Outline of Brazil" page.</li>
+				<li>Related topics listed at the bottom of a country's page.</li>
+			</ul>
 
-		<p>The first thing we did was to plot the number of citations, forward links and file sizes of a particular country over time, and compare it to the GDP of that country. Although we found that generally, a country with a high GDP also has a high Wikipedia attention, we found that this does not mean a sharp decrease in GDP affect the Wikipedia attention in the same way (i.e. decrease the amount of Wikipedia attention). It is very unlikely that the number of pages related to a country would decrease, or that the length of the article would decrease.</p>
+			<p>In the end, we decided to use the Category pages at it seemed to be the most up-to-date, comprehensive, and standardized method.</p>
 
-		<p>Looking at the graph of GDP vs. average file size of pages related to the USA shows that there is generally a positive correlation between the two metrics:</p>
-		<div class="chart usa"></div>
+			<p>We began by scraping every page in a category, along with recursively scraping that it's sub-cateogries. In this way the category system forms a tree where data is stored in non-leaf nodes as well as leaf nodes. Unfortunately we were unable to scrape the entire category tree for two reasons. First, the tree proved too large to handle. Second, the sub-categories inevitably lead to unrelated pages. For example, Afghanistan -> Government of Afghanistan -> Wars of Afghanistan -> War on Terror -> Participating Countries -> United Kingdom. To solve these problems we enforced a depth limit on our search.</p>
 
-		<p>However, looking at the graph of GDP vs. average file size of pages related to Greece shows that the relationship is not as straightforward as we thought it would be:</p>
-		<div class="chart greece"></div>
+			<p>We also scraped past revisions of each page to provide us with data to compare to past GDP values. At the top right section of a Wikipedia page, there is a tab, <a target="_blank" href="http://en.wikipedia.org/w/index.php?title=Brazil&action=history">"View history,"</a> which lets us view past revisions. We wrote a Python script to dowload snapshots of each page (the latest one) for each month going back to 2001. Snapshots were obtained at month granularity to ensure we only recorded noticeable edits.</p>
 
-		<p>There is, however, a reasonable explanation for this. In 2008, many countries experienced the Great Recession, which explains the drop in the GDP for the two graphs above, but more specifically for the graph of Greece's GDP. In other words, economies can shrink. On the other hand, it is very unlikely that Wikipedia articles will shrink, or decrease in attention, as defined by our metrics above (i.e. no one will see it fit to remove information from Wikipedia). Therefore, we were not able to predict a country's Wikipedia attention over time through their GDP.</p>
+			<p>In total, we downloaded <strong>1,634,173 pages</strong> for <strong>192</strong> countries, taking up <strong>116GB</strong> and over the course of <strong>1 week</strong>.
 
-		<p>We also tried visualizing the number of edits per country on a world map:</p>
+			<img src="html/img/View history.png">
 
-		<div class="chart" id="edits-map" max-width="100%" max-height="100%">
-			<div id="tooltip" class="hidden">
-				<p><strong><span id="value">100</span></strong></p>
-			</div>
+			<h3>World Bank Data</h3>
+
+			<p>The <a href="http://data.worldbank.org/">World Bank statistics</a> contain GDP data along with 198 other other developement indicators, such as agricultural land area, poverty rates, and school enrollment rates. World Bank provides these information in several different formats, including CSV format. These demographics from the World Bank have already been collected and cleaned.</p>
 		</div>
 
-		<div id="edits-legend"></div>
+		<div class="normal">
+			<h1>COLLECTING DATA</h1>
 
-		<p>For comparison, here is a world map displaying countries according to their GDP:</p>
+			<p>We scraped the Wikipedia pages using a Python library called <strong><a target="_blank" href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a></strong>. We ran <code><a target="_blank" href="src/extract_states.py">extract_states.py</a></code> to first extract the list of countries on Wikipedia, and then <code><a target="_blank" href="src/category_downloader.py">category_downloader.py</a></code> to extract a list of the associated pages through the Category page.</p>
 
-		<div class="chart" id="gdp-map" max-width="100%" max-height="100%">
-			<div id="tooltip" class="hidden">
-				<p><strong><span id="value">100</span></strong></p>
-			</div>
+			<p>The original goal for this project is to use data from 25 different countries. However, upon writing the Python scripts, we realized that we could download data from all the countries listed on Wikipedia.</p>
+	
 		</div>
 
-		<div id="gdp-legend"></div>
-
-		<p>Through the visualization above, we found that generally, countries with higher GDP have a higher number of Wikipedia edits over all their associated Wikipedia pages over time. Here are the countries with the most number of page edits, along with their GDP:</p>
-
-		<table class="table table-hover">
-			<tr>
-				<td>Rank</td>
-				<td>Country</td>
-				<td>Edits</td>
-				<td>GDP (current US$)</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>United Kingdom</td>
-				<td>36671</td>
-				<td>2,678,454,886,796</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>United States</td>
-				<td>26782</td>
-				<td>16,768,100,000,000</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>India</td>
-				<td>23635</td>
-				<td>1,875,141,481,990</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>Israel</td>
-				<td>23414</td>
-				<td>290,550,599,943</td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>Japan</td>
-				<td>22629</td>
-				<td>4,919,563,108,372.5</td>
-			</tr>
-		</table>
-
-		<p>We also created a scatter plot of all the countries, to compare its GDP with its number of edits:</p>
-
-		<img src="html/img/scatter.png">		
-
-		<p>We also calculated the Pearson correlation between all the GDP metrics and the countries' number of citations, file sizes as well as number of forward links. Here are the metrics with the highest Pearson correlation:</p>
-
-		<ul>
-			<li>Citations with GDP (2005 US$): 0.724</li>
-			<li>Citations with GNI, Atlas method (current US$): 0.707</li>
-			<li>Citations with GNI (current US$): 0.7066</li>
-			<li>Citations with GDP (current US$): 0.7061</li>
-			<li>Citations with number of secure Internet servers: 0.681</li>
-		</ul>
-
-		<p>Meanwhile, the metrics with the lowest (absolute) Pearson correlation are:</p>
-
-		<ul>
-			<li>File size with freshwater withdrawal: -0.000997</li>
-			<li>File size with ratio of women in ministry: 0.00225</li>
-			<li>Links with freshwater withdrawal: -0.00522</li>
-			<li>Links with pre-primary entrance age: 0.00753</li>
-			<li>Citations with freshwater withdrawal: 0.00891</li>
-		</ul>
-
-		<p>Additionally, we tried to model the data based on geographical regions:</p>
-
-		<div class="chart" id="c-map" max-width="100%" max-height="100%">
-			<div id="tooltip" class="hidden">
-				<p><strong><span id="value">100</span></strong></p>
-			</div>
+		<div class="normal">
+			<h1>DATA WRANGLING</h1>
+			<p>The articles downloaded from Wikipedia were too large to work with directly, so we extracted our four metrics from each of the files associated with a country. We stored the Wikipedia articles in html and ran <code><a target="_blank" href="src/wiki_attention.py">wiki_attention.py</a></code>extracted the desired features locally, and store them in CSV files. These files represented a sparse matrix with dimensions for country, page title, year, month, citations, file size, and forward links. This reduced our data to 71 MB. We also produced a script to convert these sparse matrix representations to dense matrices. This allowed us to more easily analyze the features over time.</p>
+			<p>After extracting the features the data needed to be joined with the World Bank data set. This proved laborious as each data set maintained a unique list of countries. Not only did the same country have different names between the two (Democratic Republic of Congo vs Congo Dem. Rep.), but they also differed in country definition. One considered Palestine a country, while the other did not. If no entity resolution could be reached (a state only existed in one data set), then we removed the state from the data set. We also had to match country names with ISO3166-1 country codes in order to map them with D3.</p>
 		</div>
 
-		<!-- <div id="c-legend"></div> -->
-	</div>
+		<div class="normal">
+			<h1>FINDINGS</h1>
 
-	<div class="normal">
-		<h1>Challenges</h1>
+				<!-- Although we found that generally, a country with a high GDP also has a high Wikipedia attention, we found that this does not mean a sharp decrease in GDP affect the Wikipedia attention in the same way (i.e. decrease the amount of Wikipedia attention).
 
-		<h3>Data Collection</h3>
+				It is very unlikely that the number of citations or links related to a country would decrease, or that the length of the article would decrease.-->
 
-		<p>Determining which pages were associated with a country was harder than we thought. As stated earlier in the Data section, there were multiple options we could use. Ultimately, we decided that it would be best for us to use the Categories page as it was the most standardized and up-to-date list.</p>
+			<p>The first thing we did was to plot the number of citations, forward links and file sizes of a particular country over time, and compare it to the GDP of that country. While they seemed to correlate for some countries, they didn't for others. </p>
 
-		<p>The next challenge was deciding how deep we should look into the Categories page, as each category had subcategories, each subcategory and its own subcategories, and so on. We had to regulate our search depth because categories and subcategories tended to overlap, leading to unrelated pages. Moreover, we also had to regulate the search depth in order to reduce the volume of data.</p>
+			<p>Looking at the graph of GDP vs. average file size of pages related to the USA shows that there is generally a positive correlation between the two metrics:</p>
+			<div class="chart usa"></div>
 
-		<p>Here is an example of some pages associated with Austria to demonstrate how wide our search is:</p>
+			<p>However, looking at the graph of GDP vs. average file size of pages related to Greece shows that the relationship is not as straightforward as we thought it would be:</p>
+			<div class="chart greece"></div>
 
-		<ul>
-			<li>Grand Duchy of Tuscany (<a target="_blank" href="http://en.wikipedia.org/wiki/Grand_Duchy_of_Tuscany">link</a>)</li>
-			<li>Vienna Summer of Logic (<a target="_blank" href="http://en.wikipedia.org/wiki/Vienna_Summer_of_Logic">link</a>)</li>
-			<li>Praetorian prefecture of Illyricum (<a target="_blank" href="http://en.wikipedia.org/wiki/Praetorian_prefecture_of_Illyricum">link</a>)</li>
-		</ul>
+			<p>There is, however, a reasonable explanation for this. In 2008, many countries experienced the Great Recession, which explains the drop in the GDP for the two graphs above, but more apparent for the graph of Greece's GDP. In other words, economies can shrink. On the other hand, it is very unlikely that Wikipedia articles will shrink, or decrease in attention, as defined by our metrics above (i.e. no one will see it fit to remove information from Wikipedia). Therefore, we were not able to predict a country's Wikipedia attention over time through their GDP.</p>
 
-		<p>Here are some pages associated with Sierra Leone:</p>
+			</br>
 
-		<ul>
-			<li>Armed Forces Revolutionary Council (<a target="_blank" href="http://en.wikipedia.org/wiki/Armed_Forces_Revolutionary_Council">link</a>)</li>
-			<li>Parliament of Sierra Leone (<a href="http://en.wikipedia.org/wiki/Parliament_of_Sierra_Leone">link</a>)</li>
-			<li>Islam in Sierra Leone (<a href="http://en.wikipedia.org/wiki/Islam_in_Sierra_Leone">link</a>)</li>
-		</ul>
+			<p>We also tried visualizing the number of edits per country on a world map:</p>
 
-		<p>We also had to handle 404 and 500 Errors.</p>
+			<div class="chart" id="edits-map" max-width="100%" max-height="100%">
+				<div id="tooltip" class="hidden">
+					<p><strong><span id="value">100</span></strong></p>
+				</div>
+			</div>
 
-		<h3>Sparse Data</h3>
+			<div id="edits-legend"></div>
 
-		<p>Not all Wikipedia pages have been around since 2001, and most Wikipedia pages aren't updated every month. Therefore, when we first tried to project the number of edits on a Wikipedia page on a matrix, the dataset was very sparse! We had to transform the data we had into a dense matrix representation before we could do some data crunching on the dataset.</p>
+			<p>For comparison, here is a world map colored according to country's GDP:</p>
 
-		<h3>Entity Resolution</h3>
+			<div class="chart" id="gdp-map" max-width="100%" max-height="100%">
+				<div id="tooltip" class="hidden">
+					<p><strong><span id="value">100</span></strong></p>
+				</div>
+			</div>
 
-		<p>We have two primary sources of data—-Wikipedia and the World Bank. However, there are several countries recognized by Wikipedia but not by the World Bank (such as Somaliland, Nagorno-Karabakh Republic, and South Ossetia), and vice versa (St. Martin, Sint Maarten, and Macao are some examples). Moreover, the names of different countries are listed differently on different sources. For instance, Macedonia is known as the Republic of Macedonia on Wikipedia, but Macedonia, FYR on the World Bank. North Korea is known as North Korea on Wikipedia, but Korea, Dem. Rep. on the World Bank.</p>
-	</div>
+			<div id="gdp-legend"></div>
+
+			<p>Through the visualization above, we found that countries with higher GDPs have a higher number of Wikipedia edits over all their associated pages over time. Here are the countries with the highest number of page edits, along with their GDP:</p>
+
+			<table class="table table-hover">
+				<tr>
+					<td>Rank</td>
+					<td>Country</td>
+					<td>Edits</td>
+					<td>GDP (current US$)</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>United Kingdom</td>
+					<td>36671</td>
+					<td>2,678,454,886,796</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>United States</td>
+					<td>26782</td>
+					<td>16,768,100,000,000</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>India</td>
+					<td>23635</td>
+					<td>1,875,141,481,990</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Israel</td>
+					<td>23414</td>
+					<td>290,550,599,943</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Japan</td>
+					<td>22629</td>
+					<td>4,919,563,108,372.5</td>
+				</tr>
+			</table>
+
+			<p>Since the edits seemed to correlate with GDP, but not necessarily GDP per capita, we thought it would be useful to visualize the number of edits per capita per country, and see if there was anything we could learn from it:</p>
+
+			<div class="chart" id="editspop-map" max-width="100%" max-height="100%">
+				<div id="tooltip" class="hidden">
+					<p><strong><span id="value">100</span></strong></p>
+				</div>
+			</div>
+
+			<div id="editspop-legend"></div>
+
+			<p>From the world map above, we noticed that the number of edits per person varied across countries. Mongolia, Namibia, and Iceland among others have exceptionally high edits per person. At first, we thought  these countries might have high tourism, which would explain why they received more attention. However, Mongolia and Bhutan both have high edits/capita, but do not necessarily have high tourism.</p>
+
+			<p>One thing all these countries have in common is a small population. It could be that there is a standard set of Wikipedia articles each country might have (i.e. History of Namibia, Culture of Namibia, etc.).</p>
+
+			<h3>Regional Analysis</h3>
+			<p>Additionally, we tried to model the data based on geographical regions:</p>
+
+			<div class="chart" id="c-map" max-width="100%" max-height="100%">
+				<div id="tooltip" class="hidden">
+					<p><strong><span id="value">100</span></strong></p>
+				</div>
+			</div>
+
+			<p>Here are the six continents in order of average edits per country. We obtained this data by dividing the total number of edits per continent by the number of countries on that continent:</p>
+			<table class="table table-hover">
+				<tr>
+					<td>Rank</td>
+					<td>Continent</td>
+					<td>Average Edits</td>
+					<td>Sum of Edits</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Asia</td>
+					<td>11215</td>
+					<td>493467</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Europe</td>
+					<td>10198</td>
+					<td>469126</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>South America</td>
+					<td>7748</td>
+					<td>406487</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>North America</td>
+					<td>6456</td>
+					<td>148490</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Africa</td>
+					<td>5866</td>
+					<td>316776</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Oceania</td>
+					<td>4899</td>
+					<td>63696</td>
+				</tr>
+			</table>
+
+			<p>As expected, Asia and Europe have the highest number of edits. Interestingly, South America out performs North America.</p>
+
+			<h3>Machine Learning</h3>
+			<p>We tried to apply machine learning to the following problem: Can the number of total citations for a particular country be predicted using World Bank Indicators? We began by applying SciKit's LinearRegresion to all possible combinations of World Bank Development Indicators. We then selected the two best performing indicators: Total Military Personnel and Number of Secure Internet Servers. Unfortunately the 2 dimensional linear model proved to have high bias (as seen in the chart below). Because multidimensional graphs cannot easily be plotted on the 2D plane, we employ the following graph in this section. Each country is plotted against it's actual and predicted number of citations. A perfect model produces the line y=x.</p>
+
+			<img src="html/img/linear-regression.png">
+
+			<p>We then tried the other extreme and trained on all 199 development indicators. We used scikit's Lasso and ElasticNet regressions at the suggestion of SciKit's documentation. Here are the results:</p>
+
+			<img src="html/img/lasso_regression.png">
+
+			<img src="html/img/regression.png">	
+
+			<p>As you can see, these models worked significantly better than the 2D linear regression. We believe that an adequate model can be created using fewer indicators; however, selecting effective features is difficult. While we were able to brute-force the 2D regression, anything larger takes an inordinate amount of time. A random sampling of 10 and 20 features provided results in between the two extremes.</p>
+
+			<p>We also created a scatter plot of all the countries, to compare its GDP with its number of edits. The following chart has a logistic x-axis.</p>
+
+			<img src="html/img/scatter.png">
+
+			<p>Last but not least, we calculated the Pearson correlation between all the World Bank Development Indicators and the countries' number of citations, file sizes, and forward links. Here are the metrics with the highest Pearson correlations:</p>
+
+			<ul>
+				<li>Citations with GDP (2005 US$): 0.724</li>
+				<li>Citations with GNI, Atlas method (current US$): 0.707</li>
+				<li>Citations with GNI (current US$): 0.7066</li>
+				<li>Citations with GDP (current US$): 0.7061</li>
+				<li>Citations with number of secure Internet servers: 0.681</li>
+			</ul>
+
+			<p>Meanwhile, the metrics with the lowest (absolute) Pearson correlations are:</p>
+
+			<ul>
+				<li>File size with freshwater withdrawal: -0.000997</li>
+				<li>File size with ratio of women in ministry: 0.00225</li>
+				<li>Links with freshwater withdrawal: -0.00522</li>
+				<li>Links with pre-primary entrance age: 0.00753</li>
+				<li>Citations with freshwater withdrawal: 0.00891</li>
+			</ul>
+		
+		</div>
+
+		<div class="normal">
+			<h1>CHALLENGES</h1>
+
+			<h3>Data Collection</h3>
+
+			<p>Determining which pages were associated with a country was harder than we thought. As stated earlier in the Data section, there were multiple options we could use. Ultimately, we decided that it would be best for us to use the Categories page as it was the most standardized and up-to-date list.</p>
+
+			<p>The next challenge was deciding how deep we should look into the Categories page, as each category had subcategories, each subcategory and its own subcategories, and so on. We had to regulate our search depth because categories and subcategories tended to overlap, leading to unrelated pages. Moreover, we also had to regulate the search depth in order to reduce the volume of data.</p>
+
+			<p>Here is an example of some pages associated with Austria to demonstrate how wide our search is:</p>
+
+			<ul>
+				<li>Grand Duchy of Tuscany (<a target="_blank" href="http://en.wikipedia.org/wiki/Grand_Duchy_of_Tuscany">link</a>)</li>
+				<li>Vienna Summer of Logic (<a target="_blank" href="http://en.wikipedia.org/wiki/Vienna_Summer_of_Logic">link</a>)</li>
+				<li>Praetorian prefecture of Illyricum (<a target="_blank" href="http://en.wikipedia.org/wiki/Praetorian_prefecture_of_Illyricum">link</a>)</li>
+			</ul>
+
+			<p>Here are some pages associated with Sierra Leone:</p>
+
+			<ul>
+				<li>Armed Forces Revolutionary Council (<a target="_blank" href="http://en.wikipedia.org/wiki/Armed_Forces_Revolutionary_Council">link</a>)</li>
+				<li>Parliament of Sierra Leone (<a href="http://en.wikipedia.org/wiki/Parliament_of_Sierra_Leone">link</a>)</li>
+				<li>Islam in Sierra Leone (<a href="http://en.wikipedia.org/wiki/Islam_in_Sierra_Leone">link</a>)</li>
+			</ul>
+
+			<p>We also had to handle 404 and 500 Errors.</p>
+
+			<h3>Sparse Data</h3>
+
+			<p>Not all Wikipedia pages have been around since 2001, and most Wikipedia pages aren't updated every month. Therefore, when we first tried to project the number of edits on a Wikipedia page on a matrix, the dataset was very sparse! We had to transform the data we had into a dense matrix representation before we could do some data crunching on the dataset.</p>
+
+			<h3>Entity Resolution</h3>
+
+			<p>We have two primary sources of data—-Wikipedia and the World Bank. However, there are several countries recognized by Wikipedia but not by the World Bank (such as Somaliland, Nagorno-Karabakh Republic, and South Ossetia), and vice versa (St. Martin, Sint Maarten, and Macao are some examples). Moreover, the names of different countries are listed differently on different sources. For instance, Macedonia is known as the Republic of Macedonia on Wikipedia, but Macedonia, FYR on the World Bank. North Korea is known as North Korea on Wikipedia, but Korea, Dem. Rep. on the World Bank.</p>
+		</div>
+
+		<div class="normal">
+			<h1>CONCLUSION</h1>
+
+			<p>From this project, we can conclude that generally, countries with a higher GDP tend to have a higher rate of Wikipedia attention as well, as proven by the world map as well as the Pearson correlations.</p>
+
+			<p>One weakness of this project is that we only took into account articles that were written in English. However, there is a possibility that French people might edit more Wikipedia articles related to France in French, or that Mexican people might edit more Wikipedia articles related to Mexico in Spanish. By only taking into account English articles, we may have a skewed dataset.</p>
+
+			<p class="text-center"><a target="_blank" href="http://github.com/indirap/state-of-states"><img width="35px" src="html/img/octocat.gif"></a></p>
+		</div>
 	</div>
 
 	<!-- SCRIPTS -->
@@ -303,6 +397,7 @@
 	<!-- JS for the world map -->
 	<script src="html/vis/worldeditsmap.js"></script>
 	<script src="html/vis/worldgdpmap.js"></script> 
+	<script src="html/vis/worldeditspopmap.js"></script>
 	<script src="html/vis/worldeditsmap_continents.js"></script> 
 
 	<!-- JS for the Greece chart -->

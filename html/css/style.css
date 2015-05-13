@@ -87,6 +87,11 @@ img {
 	align: middle;
 }
 
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /* ===== WRAPPER ===== */
 
 .wrapper {
@@ -110,6 +115,7 @@ svg {
 
 .title {
 	padding: 10%;
+	padding-bottom: 3%;
 	color: black;
 }
 
@@ -127,4 +133,11 @@ svg {
 
 .title medium {
 	font-weight: 600;
+}
+
+/* ===== WIKI IMAGE ===== */
+#wiki {
+	position: absolute;
+	left: 100px;
+	top: 0;
 }
