@@ -8,12 +8,10 @@ var colors = ["#ECF9D8", "#CFF09E", "#A8DBA8", "#79BD9A", "#6DAA8B", "#3B8686", 
 // The intervals were determined so that the countries would be divided evenly into 8
 // intervals, so that it would be aesthetically pleasing (i.e. colors spread evenly). 
 
-// var intervals = [0.00018011, 0.0003363, 0.0005137, 0.0008364, 0.001467, 0.003209, 0.012256]; // Edits per population
-// var intervals = [255009, 969725, 2057170, 4445249, 8395512, 19092981, 56532728]; // GDP per edits
-var editsintervals = [3000, 4000, 5021, 6569, 8541, 11571, 14454]; // Edits
+var gdpintervals = [1624294250, 8307222087, 14791699008, 30956691627, 57868674297, 208796024645, 438283564814]; // GDP
 
-var editscolor = d3.scale.threshold()
-	.domain(editsintervals)
+var gdpcolor = d3.scale.threshold()
+	.domain(gdpintervals)
 	.range(colors);
 
 var projection = d3.geo.kavrayskiy7()
@@ -26,24 +24,24 @@ var path = d3.geo.path()
 
 var graticule = d3.geo.graticule();
 
-var svg = d3.select("#edits-map").append("svg")
+var gdpsvg = d3.select("#gdp-map").append("svg")
 		.attr("width", width)
 		.attr("height", height);
 
-svg.append("defs").append("path")
+gdpsvg.append("defs").append("path")
 		.datum({type: "mercator"})
 		.attr("id", "sphere")
 		.attr("d", path);
 
-svg.append("use")
+gdpsvg.append("use")
 		.attr("class", "stroke")
 		.attr("xlink:href", "#sphere");
 
-svg.append("use")
+gdpsvg.append("use")
 		.attr("class", "fill")
 		.attr("xlink:href", "#sphere");
 
-var legend = d3.select("#edits-legend").append("svg")
+var gdplegend = d3.select("#gdp-legend").append("svg")
 	.data(colors)
 	.attr("width", width)
 	.attr("height", 70);
@@ -59,21 +57,21 @@ function ready(error, world, countrycodes) {
 	var getName = {};
 
 	countrycodes.forEach(function(d) {
-		rateById[d.id] = d.edits;
+		rateById[d.id] = d.gdp;
 		getName[d.id] = d.country;
 	});
 
 	var countries = topojson.feature(world, world.objects.countries).features,
 		neighbors = topojson.neighbors(world.objects.countries.geometries);
 
-	svg.selectAll(".country")
+	gdpsvg.selectAll(".country")
 			.data(countries)
 		.enter().insert("path", ".graticule")
 			.attr("class", "country")
 			.attr("d", path)
 			.style("fill", function(d) {
 				// Display based on the interval
-				return editscolor(rateById[d.id]);
+				return gdpcolor(rateById[d.id]);
 			})
 			.on('mouseover', function(d, i) {
 				// When moused over, change the color of the country to gray.
@@ -97,7 +95,7 @@ function ready(error, world, countrycodes) {
 						// In that case, say that data is not available.
 						return getName[d.id] + " - data N/A";
 					}
-					return getName[d.id] + " - " + rateById[d.id] + " edits";
+					return getName[d.id] + " - " + rateById[d.id] + " US$";
 				  });
 
 				d3.select("#tooltip").classed("hidden", false);
@@ -105,111 +103,113 @@ function ready(error, world, countrycodes) {
 			.on('mouseout', function(d) {
 				// On mouse out, return color back to normal and remove tooltip.
 				d3.select(this).style("fill", function(d) {
-					return editscolor(rateById[d.id]);
+					return gdpcolor(rateById[d.id]);
 				});
 
 				d3.select("#tooltip").classed("hidden", true);
 			});
 
-	svg.insert("path", ".graticule")
+	gdpsvg.insert("path", ".graticule")
 		.datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
 		.attr("class", "boundary")
 		.attr("d", path);
 
 	// Code for the legend. 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", 0)
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#ECF9D8");
 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", (800/7))
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#CFF09E");
 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", (800/7*2))
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#A8DBA8");
 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", (800/7*3))
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#79BD9A");
 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", (800/7*4))
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#3B8686");
 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", (800/7*5))
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#0B486B");
 
-	legend.append("rect")
+	gdplegend.append("rect")
 		.attr("x", (800/7*6))
 		.attr("y", 10)
 		.attr("width", (800/7))
 		.attr("height", 20)
 		.style("fill", "#093A56");
 
-	legend.append("text")
-		.text("≥ 3000 edits")
+	var gdpintervals = [1624294250, 8307222087, 14791699008, 30956691627, 57868674297, 208796024645, 438283564814];
+
+	gdplegend.append("text")
+		.text("≥ 1624294250 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", 10)
 		.attr("y", 40);
 
-	legend.append("text")
-		.text("≥ 4000 edits")
+	gdplegend.append("text")
+		.text("≥ 8307222087 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", (800/7) + 10)
 		.attr("y", 40);
 
-	legend.append("text")
-		.text("≥ 5021 edits")
+	gdplegend.append("text")
+		.text("≥ 14791699008 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", (800/7*2) + 10)
 		.attr("y", 40);
 
-	legend.append("text")
-		.text("≥ 6569 edits")
+	gdplegend.append("text")
+		.text("≥ 30956691627 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", (800/7*3) + 10)
 		.attr("y", 40);
 
-	legend.append("text")
-		.text("≥ 8541 edits")
+	gdplegend.append("text")
+		.text("≥ 57868674297 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", (800/7*4) + 10)
 		.attr("y", 40);
 
-	legend.append("text")
-		.text("≥ 11571 edits")
+	gdplegend.append("text")
+		.text("≥ 208796024645 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", (800/7*5) + 10)
 		.attr("y", 40);
 
-	legend.append("text")
-		.text("≥ 14454 edits")
+	gdplegend.append("text")
+		.text("≥ 438283564814 US$")
 		.attr("font-family", "@font-family-base")
 		.attr("font-size", "9px")
 		.attr("x", (800/7*6) + 10)
