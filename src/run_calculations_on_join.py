@@ -1,3 +1,4 @@
+import random
 from os import listdir
 from os.path import join, basename
 from itertools import combinations
@@ -5,7 +6,7 @@ import sys
 import csv
 import scipy.stats
 from sklearn import cross_validation
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Lasso, ElasticNet
 import numpy as np
 
 # Takes a joined data set and calculates pearson correlation on data
@@ -42,17 +43,20 @@ def calc_pearson_correlation(filename):
 # May be a problem with 0 values here, let's see
 def calc_linear_regression(files, data_matrix, target, results):
 
-    lr = LinearRegression()
+    lr = Lasso()
     lr.fit(data_matrix, target)
 
     rss = np.mean((lr.predict(data_matrix) - target) ** 2)
     var = lr.score(data_matrix, target)
 
-    for i in range(0,len(target)):
-        print str(target[i]) + "\t" + str(lr.predict(data_matrix[i])[0])
-    print lr.coef_
+    global best
+    if rss < best:
+        for i in range(0,len(target)):
+            print str(target[i]) + "\t" + str(lr.predict(data_matrix[i])[0])
+        print lr.coef_
+        best = rss
 
-    results.append((files, rss, var))
+    results.append((files, rss, var, lr.coef_))
 
 def get_indicator_values(file_name):
     data = []
@@ -94,6 +98,7 @@ if __name__ == "__main__":
             indicator_values[f] = get_indicator_values(f)
 
         for files in combinations(file_names, int(sys.argv[2])):
+        #for files in [random.sample(file_names, int(sys.argv[2]))]:
             print len(results)
             best = float("inf")
             calc_linear_regression(
